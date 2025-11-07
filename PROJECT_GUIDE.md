@@ -34,46 +34,61 @@ Gemini should generate and organize the code as defined below.
 
 ## 2. Repository layout
 
-```
-/ (Angular workspace)
-├── README.md
-├── PROJECT_GUIDE.md          ← this file
-├── angular.json
-├── package.json
-├── src/
-│  ├── app/
-│  │  ├── core/
-│  │  │  ├── services/
-│  │  │  │  ├── chip-data.service.ts
-│  │  │  │  ├── selection.service.ts
-│  │  │  │  ├── image-map.service.ts
-│  │  │  │  └── warning.service.ts
-│  │  │  └── models/
-│  │  ├── features/
-│  │  │  ├── chip-picker/
-│  │  │  ├── pin-canvas/
-│  │  │  ├── pin-details/
-│  │  │  ├── function-filter/
-│  │  │  └── search-box/
-│  │  ├── pages/chip-page/
-│  │  ├── shared/
-│  │  │  ├── components/
-│  │  │  └── pipes/
-│  │  └── app.routes.ts
-│  └── assets/chips/
-│     ├── esp32-wroom-32e/
-│     │  ├── chip.json
-│     │  ├── pinmap.png
-│     ├── esp32-s3-wroom-1/
-│     │  ├── chip.json
-│     │  └── pinmap.png
-│     └── esp32-c3-mini-1/
-│        ├── chip.json
-│        └── pinmap.png
-└── tools/
-   ├── validate-json.mjs
-   └── build-index.mjs
-```
+Root files:
+- angular.json
+- package.json
+- README.md
+- PROJECT_GUIDE.md
+- tsconfig.json
+
+Application source:
+- src/app/core/services/
+    chip-data.service.ts
+    selection.service.ts
+    image-map.service.ts
+    warning.service.ts
+
+- src/app/core/models/
+    (TypeScript interfaces for Chip, Pin, etc.)
+
+- src/app/features/chip-picker/
+    chip-picker.component.ts / .html / .css
+
+- src/app/features/pin-canvas/
+    pin-canvas.component.ts / .html / .css
+
+- src/app/features/pin-details/
+    pin-details.component.ts / .html / .css
+
+- src/app/features/function-filter/
+    function-filter.component.ts / .html / .css
+
+- src/app/features/search-box/
+    search-box.component.ts / .html / .css
+
+- src/app/pages/chip-page/
+    chip-page.component.ts / .html / .css
+
+- src/app/shared/
+    components/ (generic UI elements)
+    pipes/ (custom Angular pipes)
+
+Assets and data:
+- src/assets/chips/
+    esp32-wroom-32e/
+        chip.json
+        pinmap.png
+    esp32-s3-wroom-1/
+        chip.json
+        pinmap.png
+    esp32-c3-mini-1/
+        chip.json
+        pinmap.png
+
+Schemas and tools:
+- schemas/chip.schema.json
+- tools/validate-json.mjs
+- tools/build-index.mjs
 
 ---
 
