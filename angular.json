@@ -50,7 +50,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "esp-pin-inspector:build"
+            "browserTarget": "esp-pin-inspector:build",
+            "liveReload": true,
+            "poll": 1000
           },
           "configurations": {
             "production": {
