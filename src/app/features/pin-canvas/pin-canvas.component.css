@@ -35,16 +35,15 @@
   pointer-events: all;
 }
 
-.pin-canvas circle {
-  fill: #37a1ff;
-  opacity: 0.7;
+.pin-canvas rect.pin {
+  fill: rgba(55, 161, 255, 0.55);
   stroke: #0b0f14;
   stroke-width: 2;
   pointer-events: all;
   cursor: pointer;
 }
 
-.pin-canvas circle.selected {
-  fill: #ffb020;
+.pin-canvas rect.pin.selected {
+  fill: rgba(255, 176, 32, 0.75);
 }
 

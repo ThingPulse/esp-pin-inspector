@@ -27,6 +27,7 @@ export class PinCanvasComponent implements OnChanges {
 
   svgContent: SafeHtml | null = null;
   private lastSvgPath: string | null = null;
+  private readonly defaultHitSize = 24;
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
@@ -44,6 +45,19 @@ export class PinCanvasComponent implements OnChanges {
     return !!this.chip?.image?.toLowerCase().endsWith('.svg');
   }
 
+  getHitArea(pin: PinDefinition) {
+    if (pin.hitArea) {
+      return pin.hitArea;
+    }
+    const size = this.defaultHitSize;
+    return {
+      x: pin.position.x - size / 2,
+      y: pin.position.y - size / 2,
+      width: size,
+      height: size
+    };
+  }
+
   onOverlayClick(event: MouseEvent): void {
     if (!this.debugEnabled || !this.chip || !this.overlayRef) return;
     const svg = this.overlayRef.nativeElement;
@@ -52,11 +66,13 @@ export class PinCanvasComponent implements OnChanges {
     const scaleY = this.chip.viewBox.height / rect.height;
     const x = Math.round((event.clientX - rect.left) * scaleX);
     const y = Math.round((event.clientY - rect.top) * scaleY);
+    const size = this.defaultHitSize;
     const snippet = {
       id: "PIN_PLACEHOLDER",
       number: "Pxx",
       name: "PIN_PLACEHOLDER",
       position: { x, y },
+      hitArea: { x: x - Math.round(size / 2), y: y - Math.round(size / 2), width: size, height: size },
       functions: [ { kind: "GPIO" } ]
     };
     // eslint-disable-next-line no-console

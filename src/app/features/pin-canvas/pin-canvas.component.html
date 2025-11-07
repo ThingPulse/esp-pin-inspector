@@ -13,16 +13,21 @@
       (click)="onOverlayClick($event)"
     >
       <rect x="0" y="0" [attr.width]="c.viewBox.width" [attr.height]="c.viewBox.height" fill="transparent"></rect>
-      <g>
-        <circle
-          *ngFor="let p of c.pins"
-          [attr.cx]="p.position.x"
-          [attr.cy]="p.position.y"
-          r="8"
-          [class.selected]="p.id === selectedPinId"
-          (click)="pinClick.emit(p)"
-        ></circle>
-      </g>
+      <ng-container *ngFor="let p of c.pins">
+        <ng-container *ngIf="getHitArea(p) as hit">
+          <rect
+            class="pin"
+            [class.selected]="p.id === selectedPinId"
+            [attr.x]="hit.x"
+            [attr.y]="hit.y"
+            [attr.width]="hit.width"
+            [attr.height]="hit.height"
+            rx="4"
+            ry="4"
+            (click)="pinClick.emit(p)"
+          ></rect>
+        </ng-container>
+      </ng-container>
     </svg>
   </div>
 </div>
