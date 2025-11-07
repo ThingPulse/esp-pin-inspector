@@ -1,7 +1,8 @@
 
 .pin-canvas .image-wrap {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
 .pin-canvas .svg-host {
@@ -15,12 +16,14 @@
   display: block;
   width: 100%;
   height: auto;
+  min-height: 600px;
 }
 
 .pin-canvas img {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  min-height: 600px;
 }
 
 .pin-canvas .overlay {
