@@ -77,6 +77,10 @@ export class PinCanvasComponent implements OnChanges {
     };
   }
 
+  hasWarning(pin: PinDefinition): boolean {
+    return pin.reserved?.level === 'warn' || pin.reserved?.level === 'error';
+  }
+
   onOverlayClick(event: MouseEvent): void {
     if (!this.debugEnabled || !this.chip || !this.overlayRef) return;
     const svg = this.overlayRef.nativeElement;

@@ -19,6 +19,7 @@
             class="pin"
             [class.selected]="p.id === selectedPinId"
             [class.editing]="editorEnabled && editingPin?.id === p.id"
+            [class.warning]="hasWarning(p)"
             [attr.x]="hit.x"
             [attr.y]="hit.y"
             [attr.width]="hit.width"
@@ -29,6 +30,15 @@
             (mousedown)="onPinMouseDown($event, p)"
           ></rect>
           <ng-container *ngIf="editorEnabled">
+            <!-- Pin name label -->
+            <text
+              class="pin-label"
+              [attr.x]="hit.x + hit.width / 2"
+              [attr.y]="hit.y + hit.height / 2"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              pointer-events="none"
+            >{{ p.name }}</text>
             <!-- Corner handles -->
             <rect
               class="resize-handle resize-nw"
