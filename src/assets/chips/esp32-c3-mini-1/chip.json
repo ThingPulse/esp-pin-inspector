@@ -1,0 +1,17 @@
+{
+  "chipId": "esp32-c3-mini-1",
+  "name": "ESP32-C3-MINI-1",
+  "package": "Module",
+  "image": "pinmap.png",
+  "viewBox": { "width": 1600, "height": 1200 },
+  "pins": [
+    {
+      "id": "GPIO2",
+      "number": "GPIO2",
+      "name": "GPIO2",
+      "position": { "x": 480, "y": 920 },
+      "functions": [ { "kind": "GPIO" }, { "kind": "UART", "role": "TX" } ]
+    }
+  ]
+}
+

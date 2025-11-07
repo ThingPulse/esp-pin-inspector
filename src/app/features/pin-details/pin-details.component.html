@@ -1,0 +1,19 @@
+<ng-container *ngIf="pin as p; else empty">
+  <h2>{{ p.name }}</h2>
+  <div>
+    <strong>Functions:</strong>
+    <ul>
+      <li *ngFor="let f of p.functions">{{ f.kind }}<span *ngIf="f.role"> ({{ f.role }})</span></li>
+    </ul>
+  </div>
+  <div *ngIf="pinWarnings.length">
+    <strong>Warnings:</strong>
+    <ul>
+      <li *ngFor="let w of pinWarnings">[{{ w.level }}] {{ w.message }}</li>
+    </ul>
+  </div>
+</ng-container>
+<ng-template #empty>
+  <em>Select a pin to view details.</em>
+</ng-template>
+

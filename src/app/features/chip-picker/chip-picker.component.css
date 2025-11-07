@@ -1,0 +1,14 @@
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+select {
+  background: #11161d;
+  color: #e6ebf0;
+  border: 1px solid #243043;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+

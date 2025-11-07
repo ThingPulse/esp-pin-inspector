@@ -1,0 +1,26 @@
+<div class="toolbar">
+  <app-chip-picker
+    [chips]="[{ id: 'esp32-wroom-32e', name: 'ESP32-WROOM-32E' }, { id: 'esp32-s3-wroom-1', name: 'ESP32-S3-WROOM-1' }, { id: 'esp32-c3-mini-1', name: 'ESP32-C3-MINI-1' }]"
+    [selectedId]="chip?.chipId || null"
+    (select)="sel.setChipId($event); $event && (chip=null); $event && (selectedPin=null); $event && (router.navigate(['/chip', $event]))">
+  </app-chip-picker>
+  <app-function-filter></app-function-filter>
+  <app-search-box></app-search-box>
+</div>
+
+<div *ngIf="chip as c; else pick">
+  <div class="layout">
+    <div class="canvas">
+      <app-pin-canvas [chip]="c" [selectedPinId]="selectedPin?.id || null" (pinClick)="onPinClick($event)"></app-pin-canvas>
+    </div>
+    <div class="details">
+      <app-pin-details [pin]="selectedPin"></app-pin-details>
+    </div>
+  </div>
+</div>
+
+<ng-template #pick>
+  <p>Select a chip to begin.</p>
+  
+</ng-template>
+

@@ -1,0 +1,20 @@
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+
+.details {
+  background: #0f141b;
+  border: 1px solid #243043;
+  border-radius: 8px;
+  padding: 12px;
+}
+

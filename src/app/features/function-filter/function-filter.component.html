@@ -1,0 +1,8 @@
+<label>
+  <span>Filter:</span>
+  <select [ngModel]="selected" (ngModelChange)="change.emit($event || null)">
+    <option [ngValue]="null">All</option>
+    <option *ngFor="let k of kinds" [ngValue]="k">{{ k }}</option>
+  </select>
+</label>
+

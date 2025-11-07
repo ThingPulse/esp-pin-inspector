@@ -1,0 +1,7 @@
+<label>
+  <span>Chip:</span>
+  <select [ngModel]="selectedId" (ngModelChange)="select.emit($event)">
+    <option *ngFor="let c of chips" [value]="c.id">{{ c.name }}</option>
+  </select>
+</label>
+

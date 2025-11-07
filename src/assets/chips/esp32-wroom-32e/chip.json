@@ -1,0 +1,19 @@
+{
+  "chipId": "esp32-wroom-32e",
+  "name": "ESP32-WROOM-32E",
+  "package": "Module",
+  "datasheetUrl": "https://example.com/datasheet.pdf",
+  "image": "pinmap.png",
+  "viewBox": { "width": 1600, "height": 1200 },
+  "pins": [
+    {
+      "id": "GPIO0",
+      "number": "GPIO0",
+      "name": "GPIO0",
+      "position": { "x": 340, "y": 1080 },
+      "functions": [ { "kind": "GPIO" }, { "kind": "UART", "role": "CTS0" } ],
+      "reserved": { "level": "warn", "tags": ["strap"], "reason": "Boot strap pin; avoid pulling low at reset" }
+    }
+  ]
+}
+
