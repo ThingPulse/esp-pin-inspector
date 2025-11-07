@@ -2,53 +2,1154 @@
   "chipId": "esp32-s3-wroom-1",
   "name": "ESP32-S3-WROOM-1/1U",
   "package": "Module",
-  "datasheetUrl": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+  "datasheetUrl": "https://www.espressif.com/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
   "image": "pinmap.svg",
-  "viewBox": { "width": 906, "height": 1093 },
+  "viewBox": {
+    "width": 1519,
+    "height": 1910
+  },
   "pins": [
-    { "id": "GND", "number": "1", "name": "GND", "position": { "x": 102.0, "y": 304.0 }, "electrical": { "type": "GROUND" } },
-    { "id": "3V3", "number": "2", "name": "3V3", "position": { "x": 102.0, "y": 354.0 }, "electrical": { "type": "POWER", "voltage": "3.3V" } },
-    { "id": "EN", "number": "3", "name": "EN", "position": { "x": 102.0, "y": 404.0 }, "electrical": { "type": "POWER" }, "reserved": { "level": "warn", "tags": ["boot"], "reason": "Chip enable; keep high for normal operation" } },
-    { "id": "IO4", "number": "4", "name": "IO4", "position": { "x": 102.0, "y": 454.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH3" } ] },
-    { "id": "IO5", "number": "5", "name": "IO5", "position": { "x": 102.0, "y": 504.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH4" } ] },
-    { "id": "IO6", "number": "6", "name": "IO6", "position": { "x": 102.0, "y": 554.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH5" } ] },
-    { "id": "IO7", "number": "7", "name": "IO7", "position": { "x": 102.0, "y": 604.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH6" } ] },
-    { "id": "IO15", "number": "8", "name": "IO15", "position": { "x": 102.0, "y": 654.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH4" } ] },
-    { "id": "IO16", "number": "9", "name": "IO16", "position": { "x": 102.0, "y": 704.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH5" } ] },
-    { "id": "IO17", "number": "10", "name": "IO17", "position": { "x": 102.0, "y": 754.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH6" } ] },
-    { "id": "IO18", "number": "11", "name": "IO18", "position": { "x": 102.0, "y": 804.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH7" } ] },
-    { "id": "IO8", "number": "12", "name": "IO8", "position": { "x": 102.0, "y": 854.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH7" } ] },
-    { "id": "IO19", "number": "13", "name": "IO19", "position": { "x": 102.0, "y": 904.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH8" }, { "kind": "USB", "role": "D-" } ] },
-    { "id": "IO20", "number": "14", "name": "IO20", "position": { "x": 102.0, "y": 954.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH9" }, { "kind": "USB", "role": "D+" } ] },
-
-    { "id": "IO3", "number": "15", "name": "IO3", "position": { "x": 178.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH2" } ], "reserved": { "level": "info", "tags": ["strap"], "reason": "Strapping: JTAG signal source" } },
-    { "id": "IO46", "number": "16", "name": "IO46", "position": { "x": 228.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" } ], "reserved": { "level": "warn", "tags": ["strap"], "reason": "Boot strapping pin" } },
-    { "id": "IO9", "number": "17", "name": "IO9", "position": { "x": 278.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH8" } ] },
-    { "id": "IO10", "number": "18", "name": "IO10", "position": { "x": 328.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH9" } ] },
-    { "id": "IO11", "number": "19", "name": "IO11", "position": { "x": 378.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH0" } ] },
-    { "id": "IO12", "number": "20", "name": "IO12", "position": { "x": 428.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH1" } ] },
-    { "id": "IO13", "number": "21", "name": "IO13", "position": { "x": 478.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH2" } ] },
-    { "id": "IO14", "number": "22", "name": "IO14", "position": { "x": 528.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH3" } ] },
-    { "id": "IO21", "number": "23", "name": "IO21", "position": { "x": 578.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO47", "number": "24", "name": "IO47", "position": { "x": 628.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO48", "number": "25", "name": "IO48", "position": { "x": 678.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO45", "number": "26", "name": "IO45", "position": { "x": 728.0, "y": 1012.0 }, "functions": [ { "kind": "GPIO" } ], "reserved": { "level": "warn", "tags": ["strap"], "reason": "VDD_SPI voltage select strapping" } },
-
-    { "id": "IO0", "number": "27", "name": "IO0", "position": { "x": 806.0, "y": 956.0 }, "functions": [ { "kind": "GPIO" } ], "reserved": { "level": "warn", "tags": ["strap"], "reason": "Boot mode strapping; avoid LOW at reset" } },
-    { "id": "IO35", "number": "28", "name": "IO35", "position": { "x": 806.2, "y": 905.8 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO36", "number": "29", "name": "IO36", "position": { "x": 806.3, "y": 855.7 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO37", "number": "30", "name": "IO37", "position": { "x": 806.5, "y": 805.5 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO38", "number": "31", "name": "IO38", "position": { "x": 806.7, "y": 755.3 }, "functions": [ { "kind": "GPIO" } ] },
-    { "id": "IO39", "number": "32", "name": "IO39", "position": { "x": 806.8, "y": 705.2 }, "functions": [ { "kind": "GPIO" }, { "kind": "JTAG", "role": "MTCK" } ] },
-    { "id": "IO40", "number": "33", "name": "IO40", "position": { "x": 807.0, "y": 655.0 }, "functions": [ { "kind": "GPIO" }, { "kind": "JTAG", "role": "MTDO" } ] },
-    { "id": "IO41", "number": "34", "name": "IO41", "position": { "x": 807.2, "y": 604.8 }, "functions": [ { "kind": "GPIO" }, { "kind": "JTAG", "role": "MTDI" } ] },
-    { "id": "IO42", "number": "35", "name": "IO42", "position": { "x": 807.3, "y": 554.7 }, "functions": [ { "kind": "GPIO" }, { "kind": "JTAG", "role": "MTMS" } ] },
-    { "id": "RXD0", "number": "36", "name": "RXD0", "position": { "x": 807.4, "y": 504.6 }, "functions": [ { "kind": "UART", "role": "U0RXD", "notes": "Default pin is GPIO44" }, { "kind": "GPIO", "notes": "GPIO44" } ] },
-    { "id": "TXD0", "number": "37", "name": "TXD0", "position": { "x": 807.5, "y": 454.4 }, "functions": [ { "kind": "UART", "role": "U0TXD", "notes": "Default pin is GPIO43" }, { "kind": "GPIO", "notes": "GPIO43" } ] },
-    { "id": "IO2", "number": "38", "name": "IO2", "position": { "x": 807.7, "y": 404.3 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH1" } ] },
-    { "id": "IO1", "number": "39", "name": "IO1", "position": { "x": 807.8, "y": 354.2 }, "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH0" } ] },
-    { "id": "GND", "number": "40", "name": "GND", "position": { "x": 808.0, "y": 304.0 }, "electrical": { "type": "GROUND" } },
-
-    { "id": "GND", "number": "41", "name": "GND", "position": { "x": 455.0, "y": 629.0 }, "electrical": { "type": "GROUND" } }
+    {
+      "id": "GND",
+      "number": "1",
+      "name": "GND",
+      "area": {
+        "x": 1324,
+        "y": 494,
+        "w": 61,
+        "h": 62
+      },
+      "electrical": {
+        "type": "GROUND"
+      }
+    },
+    {
+      "id": "3V3",
+      "number": "2",
+      "name": "3V3",
+      "area": {
+        "x": 118,
+        "y": 583,
+        "w": 61,
+        "h": 62
+      },
+      "electrical": {
+        "type": "POWER",
+        "voltage": "3.3V"
+      }
+    },
+    {
+      "id": "EN",
+      "number": "3",
+      "name": "EN",
+      "area": {
+        "x": 118,
+        "y": 671,
+        "w": 61,
+        "h": 64
+      },
+      "electrical": {
+        "type": "POWER"
+      },
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "boot"
+        ],
+        "reason": "Chip enable; keep HIGH"
+      }
+    },
+    {
+      "id": "IO4",
+      "number": "4",
+      "name": "IO4",
+      "area": {
+        "x": 118,
+        "y": 762,
+        "w": 61,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO4"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH4"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH3"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO4"
+        }
+      ]
+    },
+    {
+      "id": "IO5",
+      "number": "5",
+      "name": "IO5",
+      "area": {
+        "x": 118,
+        "y": 850,
+        "w": 61,
+        "h": 64
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO5"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH5"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH4"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO5"
+        }
+      ]
+    },
+    {
+      "id": "IO6",
+      "number": "6",
+      "name": "IO6",
+      "area": {
+        "x": 118,
+        "y": 941,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO6"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH6"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH5"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO6"
+        }
+      ]
+    },
+    {
+      "id": "IO7",
+      "number": "7",
+      "name": "IO7",
+      "area": {
+        "x": 118,
+        "y": 1029,
+        "w": 61,
+        "h": 64
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO7"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH7"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH6"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO7"
+        }
+      ]
+    },
+    {
+      "id": "IO15",
+      "number": "8",
+      "name": "IO15",
+      "area": {
+        "x": 118,
+        "y": 1119,
+        "w": 61,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO15"
+        },
+        {
+          "kind": "UART",
+          "role": "U0RTS"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH4"
+        },
+        {
+          "kind": "CLK",
+          "role": "XTAL_32K_P"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO15"
+        }
+      ]
+    },
+    {
+      "id": "IO16",
+      "number": "9",
+      "name": "IO16",
+      "area": {
+        "x": 118,
+        "y": 1208,
+        "w": 59,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO16"
+        },
+        {
+          "kind": "UART",
+          "role": "U0CTS"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH5"
+        },
+        {
+          "kind": "CLK",
+          "role": "XTAL_32K_N"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO16"
+        }
+      ]
+    },
+    {
+      "id": "IO17",
+      "number": "10",
+      "name": "IO17",
+      "area": {
+        "x": 118,
+        "y": 1298,
+        "w": 61,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO17"
+        },
+        {
+          "kind": "UART",
+          "role": "U1TXD"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH6"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO17"
+        }
+      ]
+    },
+    {
+      "id": "IO18",
+      "number": "11",
+      "name": "IO18",
+      "area": {
+        "x": 118,
+        "y": 1387,
+        "w": 61,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO18"
+        },
+        {
+          "kind": "UART",
+          "role": "U1RXD"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH7"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT3"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO18"
+        }
+      ]
+    },
+    {
+      "id": "IO8",
+      "number": "12",
+      "name": "IO8",
+      "area": {
+        "x": 120,
+        "y": 1477,
+        "w": 58,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO8"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH8"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH7"
+        },
+        {
+          "kind": "SPI",
+          "role": "SUBSPICS1"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO8"
+        }
+      ]
+    },
+    {
+      "id": "IO19",
+      "number": "13",
+      "name": "IO19",
+      "area": {
+        "x": 118,
+        "y": 1566,
+        "w": 61,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO19"
+        },
+        {
+          "kind": "UART",
+          "role": "U1RTS"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH8"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT2"
+        },
+        {
+          "kind": "USB",
+          "role": "USB_D-"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO19"
+        }
+      ]
+    },
+    {
+      "id": "IO20",
+      "number": "14",
+      "name": "IO20",
+      "area": {
+        "x": 118,
+        "y": 1656,
+        "w": 59,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO20"
+        },
+        {
+          "kind": "UART",
+          "role": "U1CTS"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH9"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT1"
+        },
+        {
+          "kind": "USB",
+          "role": "USB_D+"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO20"
+        }
+      ]
+    },
+    {
+      "id": "IO3",
+      "number": "15",
+      "name": "IO3",
+      "area": {
+        "x": 229,
+        "y": 1731,
+        "w": 62,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO3"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH3"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH2"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO3"
+        }
+      ],
+      "reserved": {
+        "level": "info",
+        "tags": [
+          "strap"
+        ],
+        "reason": "JTAG source control (GPIO3) during boot"
+      }
+    },
+    {
+      "id": "IO46",
+      "number": "16",
+      "name": "IO46",
+      "area": {
+        "x": 318,
+        "y": 1731,
+        "w": 62,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO46"
+        }
+      ],
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "strap"
+        ],
+        "reason": "Strapping pin (boot / ROM print)"
+      }
+    },
+    {
+      "id": "IO9",
+      "number": "17",
+      "name": "IO9",
+      "area": {
+        "x": 406,
+        "y": 1731,
+        "w": 64,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO9"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH9"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH8"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIHD / SUBSPIHD"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO9"
+        }
+      ]
+    },
+    {
+      "id": "IO10",
+      "number": "18",
+      "name": "IO10",
+      "area": {
+        "x": 497,
+        "y": 1733,
+        "w": 62,
+        "h": 58
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO10"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH10"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH9"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPICS0 / FSPIIO4"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO10"
+        }
+      ]
+    },
+    {
+      "id": "IO11",
+      "number": "19",
+      "name": "IO11",
+      "area": {
+        "x": 586,
+        "y": 1731,
+        "w": 62,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO11"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH11"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH0"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPID / FSPIIO5"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO11"
+        }
+      ]
+    },
+    {
+      "id": "IO12",
+      "number": "20",
+      "name": "IO12",
+      "area": {
+        "x": 676,
+        "y": 1731,
+        "w": 62,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO12"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH12"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH1"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPICLK / FSPIIO6"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO12"
+        }
+      ]
+    },
+    {
+      "id": "IO13",
+      "number": "21",
+      "name": "IO13",
+      "area": {
+        "x": 765,
+        "y": 1731,
+        "w": 62,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO13"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH13"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH2"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIQ / FSPIIO7"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO13"
+        }
+      ]
+    },
+    {
+      "id": "IO14",
+      "number": "22",
+      "name": "IO14",
+      "area": {
+        "x": 855,
+        "y": 1731,
+        "w": 62,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO14"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH14"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH3"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIWP / FSPIDQS"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO14"
+        }
+      ]
+    },
+    {
+      "id": "IO21",
+      "number": "23",
+      "name": "IO21",
+      "area": {
+        "x": 942,
+        "y": 1731,
+        "w": 64,
+        "h": 60
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO21"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO21"
+        }
+      ]
+    },
+    {
+      "id": "IO47",
+      "number": "24",
+      "name": "IO47",
+      "area": {
+        "x": 1031,
+        "y": 1731,
+        "w": 64,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO47"
+        },
+        {
+          "kind": "SPI",
+          "role": "SPICLK_P_DIFF"
+        }
+      ],
+      "reserved": {
+        "level": "info",
+        "tags": [
+          "1.8V"
+        ],
+        "reason": "1.8 V on R16V modules"
+      }
+    },
+    {
+      "id": "IO48",
+      "number": "25",
+      "name": "IO48",
+      "area": {
+        "x": 1122,
+        "y": 1733,
+        "w": 62,
+        "h": 59
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO48"
+        },
+        {
+          "kind": "SPI",
+          "role": "SPICLK_N_DIFF"
+        }
+      ],
+      "reserved": {
+        "level": "info",
+        "tags": [
+          "1.8V"
+        ],
+        "reason": "1.8 V on R16V modules"
+      }
+    },
+    {
+      "id": "IO45",
+      "number": "26",
+      "name": "IO45",
+      "area": {
+        "x": 1210,
+        "y": 1731,
+        "w": 64,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO45"
+        }
+      ],
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "strap"
+        ],
+        "reason": "VDD_SPI voltage strapping"
+      }
+    },
+    {
+      "id": "IO0",
+      "number": "27",
+      "name": "IO0",
+      "area": {
+        "x": 1324,
+        "y": 1656,
+        "w": 59,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO0"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO0"
+        }
+      ],
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "strap"
+        ],
+        "reason": "Boot mode strapping (GPIO0)"
+      }
+    },
+    {
+      "id": "IO35",
+      "number": "28",
+      "name": "IO35",
+      "area": {
+        "x": 1324,
+        "y": 1566,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO35"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPID"
+        },
+        {
+          "kind": "ALT",
+          "role": "SPIIO6"
+        }
+      ],
+      "reserved": {
+        "level": "info",
+        "tags": [
+          "psram"
+        ],
+        "reason": "Used by Octal PSRAM on R8/R16V modules"
+      }
+    },
+    {
+      "id": "IO36",
+      "number": "29",
+      "name": "IO36",
+      "area": {
+        "x": 1324,
+        "y": 1477,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO36"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPICLK"
+        },
+        {
+          "kind": "ALT",
+          "role": "SPIIO7"
+        }
+      ],
+      "reserved": {
+        "level": "info",
+        "tags": [
+          "psram"
+        ],
+        "reason": "Used by Octal PSRAM on R8/R16V modules"
+      }
+    },
+    {
+      "id": "IO37",
+      "number": "30",
+      "name": "IO37",
+      "area": {
+        "x": 1324,
+        "y": 1387,
+        "w": 60,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO37"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIQ"
+        },
+        {
+          "kind": "ALT",
+          "role": "SPIDQS"
+        }
+      ],
+      "reserved": {
+        "level": "info",
+        "tags": [
+          "psram"
+        ],
+        "reason": "Used by Octal PSRAM on R8/R16V modules"
+      }
+    },
+    {
+      "id": "IO38",
+      "number": "31",
+      "name": "IO38",
+      "area": {
+        "x": 1324,
+        "y": 1298,
+        "w": 59,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO38"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIWP"
+        }
+      ]
+    },
+    {
+      "id": "IO39",
+      "number": "32",
+      "name": "IO39",
+      "area": {
+        "x": 1324,
+        "y": 1208,
+        "w": 61,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO39"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTCK"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT3"
+        },
+        {
+          "kind": "SPI",
+          "role": "SUBSPICS1"
+        }
+      ]
+    },
+    {
+      "id": "IO40",
+      "number": "33",
+      "name": "IO40",
+      "area": {
+        "x": 1324,
+        "y": 1120,
+        "w": 60,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO40"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTDO"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT2"
+        }
+      ]
+    },
+    {
+      "id": "IO41",
+      "number": "34",
+      "name": "IO41",
+      "area": {
+        "x": 1324,
+        "y": 1031,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO41"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTDI"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT1"
+        }
+      ]
+    },
+    {
+      "id": "IO42",
+      "number": "35",
+      "name": "IO42",
+      "area": {
+        "x": 1324,
+        "y": 941,
+        "w": 60,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO42"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTMS"
+        }
+      ]
+    },
+    {
+      "id": "RXD0",
+      "number": "36",
+      "name": "RXD0",
+      "area": {
+        "x": 1324,
+        "y": 852,
+        "w": 60,
+        "h": 62
+      },
+      "functions": [
+        {
+          "kind": "UART",
+          "role": "U0RXD"
+        },
+        {
+          "kind": "GPIO",
+          "notes": "GPIO44"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT2"
+        }
+      ]
+    },
+    {
+      "id": "TXD0",
+      "number": "37",
+      "name": "TXD0",
+      "area": {
+        "x": 1324,
+        "y": 762,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "UART",
+          "role": "U0TXD"
+        },
+        {
+          "kind": "GPIO",
+          "notes": "GPIO43"
+        },
+        {
+          "kind": "CLK",
+          "role": "CLK_OUT1"
+        }
+      ]
+    },
+    {
+      "id": "IO2",
+      "number": "38",
+      "name": "IO2",
+      "area": {
+        "x": 1324,
+        "y": 674,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO2"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH2"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH1"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO2"
+        }
+      ]
+    },
+    {
+      "id": "IO1",
+      "number": "39",
+      "name": "IO1",
+      "area": {
+        "x": 1324,
+        "y": 585,
+        "w": 61,
+        "h": 61
+      },
+      "functions": [
+        {
+          "kind": "GPIO",
+          "notes": "GPIO1"
+        },
+        {
+          "kind": "TOUCH",
+          "role": "TOUCH1"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH0"
+        },
+        {
+          "kind": "RTC",
+          "role": "RTC_GPIO1"
+        }
+      ]
+    },
+    {
+      "id": "GND",
+      "number": "40",
+      "name": "GND",
+      "area": {
+        "x": 1324,
+        "y": 494,
+        "w": 61,
+        "h": 62
+      },
+      "electrical": {
+        "type": "GROUND"
+      }
+    },
+    {
+      "id": "EPAD",
+      "number": "41",
+      "name": "EPAD",
+      "area": {
+        "x": 680,
+        "y": 1065,
+        "w": 243,
+        "h": 275
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "notes": "Exposed pad; solder to ground plane per datasheet"
+    }
   ]
 }
