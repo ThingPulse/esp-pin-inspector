@@ -1,6 +1,20 @@
+
 .pin-canvas .image-wrap {
   position: relative;
   display: inline-block;
+}
+
+.pin-canvas .svg-host {
+  display: block;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pin-canvas .svg-host svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .pin-canvas img {

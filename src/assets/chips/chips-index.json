@@ -5,10 +5,10 @@
   },
   {
     "id": "esp32-s3-wroom-1",
-    "name": "ESP32-S3-WROOM-1"
+    "name": "ESP32-S3-WROOM-1/1U"
   },
   {
     "id": "esp32-wroom-32e",
-    "name": "ESP32-WROOM-32E"
+    "name": "ESP32-WROOM-32E/32UE"
   }
 ]

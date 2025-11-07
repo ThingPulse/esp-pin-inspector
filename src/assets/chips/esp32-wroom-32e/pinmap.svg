@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1200" viewBox="0 0 1000 1200">
+  <defs>
+    <style>
+      .chip-body { fill: #1a202c; stroke: #2d3748; stroke-width: 4; }
+      .chip-label { fill: #e2e8f0; font-family: 'Segoe UI', sans-serif; font-size: 42px; font-weight: 600; letter-spacing: 2px; }
+      .chip-outline { fill: none; stroke: #4a5568; stroke-dasharray: 12 12; }
+    </style>
+  </defs>
+  <rect x="120" y="120" width="760" height="960" rx="40" class="chip-body" />
+  <rect x="40" y="40" width="920" height="1120" rx="80" class="chip-outline" />
+  <text x="500" y="180" text-anchor="middle" class="chip-label">ESP32-WROOM-32E</text>
+  <text x="500" y="230" text-anchor="middle" class="chip-label" font-size="24">(Placeholder Footprint)</text>
+</svg>
+

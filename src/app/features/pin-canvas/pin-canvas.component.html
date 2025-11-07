@@ -1,7 +1,17 @@
 <div class="pin-canvas" *ngIf="chip as c">
   <div class="image-wrap">
-    <img [src]="'assets/chips/' + c.chipId + '/' + c.image" [alt]="c.name" />
-    <svg #overlay class="overlay" [attr.viewBox]="'0 0 ' + c.viewBox.width + ' ' + c.viewBox.height" (click)="onOverlayClick($event)">
+    <ng-container *ngIf="isSvg; else rasterImage">
+      <div class="svg-host" [innerHTML]="svgContent"></div>
+    </ng-container>
+    <ng-template #rasterImage>
+      <img [src]="'assets/chips/' + c.chipId + '/' + c.image" [alt]="c.name" />
+    </ng-template>
+    <svg
+      #overlay
+      class="overlay"
+      [attr.viewBox]="'0 0 ' + c.viewBox.width + ' ' + c.viewBox.height"
+      (click)="onOverlayClick($event)"
+    >
       <rect x="0" y="0" [attr.width]="c.viewBox.width" [attr.height]="c.viewBox.height" fill="transparent"></rect>
       <g>
         <circle
