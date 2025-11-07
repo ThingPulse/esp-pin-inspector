@@ -35,14 +35,14 @@
               "y": { "type": "number" }
             }
           },
-          "hitArea": {
+          "area": {
             "type": "object",
-            "required": ["x", "y", "width", "height"],
+            "required": ["x", "y", "w", "h"],
             "properties": {
               "x": { "type": "number" },
               "y": { "type": "number" },
-              "width": { "type": "number", "exclusiveMinimum": 0 },
-              "height": { "type": "number", "exclusiveMinimum": 0 }
+              "w": { "type": "number", "exclusiveMinimum": 0 },
+              "h": { "type": "number", "exclusiveMinimum": 0 }
             },
             "additionalProperties": false
           },

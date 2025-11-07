@@ -4,107 +4,385 @@
   "package": "Module",
   "datasheetUrl": "https://espressif.com/documentation/esp32-c3-mini-1_datasheet_en.pdf",
   "image": "pinmap.svg",
-  "viewBox": { "width": 1263, "height": 1434 },
+  "viewBox": {
+    "width": 1263,
+    "height": 1434
+  },
   "pins": [
-    { "id": "GND1",   "number": "1",  "name": "GND",  "position": { "x": 125.0, "y": 574.1 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND2",   "number": "2",  "name": "GND",  "position": { "x": 125.0, "y": 638.8 }, "electrical": { "type": "GROUND" } },
-    { "id": "3V3",    "number": "3",  "name": "3V3",  "position": { "x": 125.0, "y": 703.5 }, "electrical": { "type": "POWER", "voltage": "3.3V" } },
-    { "id": "NC4",    "number": "4",  "name": "NC",   "position": { "x": 125.0, "y": 768.2 }, "electrical": { "type": "NC" } },
+    {
+      "id": "IO25",
+      "number": "5",
+      "name": "IO2",
+      "area": {
+        "x": 116,
+        "y": 808,
+        "w": 63,
+        "h": 31
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH2"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIQ"
+        }
+      ],
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "strap"
+        ],
+        "reason": "Strapping pin (GPIO2)."
+      }
+    },
+    {
+      "id": "IO36",
+      "number": "6",
+      "name": "IO3",
+      "area": {
+        "x": 116,
+        "y": 873,
+        "w": 63,
+        "h": 31
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH3"
+        }
+      ]
+    },
+    {
+      "id": "EN8",
+      "number": "8",
+      "name": "EN",
+      "area": {
+        "x": 115,
+        "y": 1002,
+        "w": 63,
+        "h": 32
+      },
+      "electrical": {
+        "type": "POWER"
+      },
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "boot"
+        ],
+        "reason": "Chip enable; keep HIGH for normal operation."
+      }
+    },
+    {
+      "id": "IO012",
+      "number": "12",
+      "name": "IO0",
+      "area": {
+        "x": 220,
+        "y": 1253,
+        "w": 32,
+        "h": 63
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH0"
+        },
+        {
+          "kind": "CLK",
+          "role": "XTAL_32K_P"
+        }
+      ]
+    },
+    {
+      "id": "IO113",
+      "number": "13",
+      "name": "IO1",
+      "area": {
+        "x": 286,
+        "y": 1253,
+        "w": 29,
+        "h": 63
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH1"
+        },
+        {
+          "kind": "CLK",
+          "role": "XTAL_32K_N"
+        }
+      ]
+    },
+    {
+      "id": "IO1016",
+      "number": "16",
+      "name": "IO10",
+      "area": {
+        "x": 480,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPICS0"
+        }
+      ]
+    },
+    {
+      "id": "IO418",
+      "number": "18",
+      "name": "IO4",
+      "area": {
+        "x": 609,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH4"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIHD"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTMS"
+        }
+      ]
+    },
+    {
+      "id": "IO519",
+      "number": "19",
+      "name": "IO5",
+      "area": {
+        "x": 674,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC2_CH0"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIWP"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTDI"
+        }
+      ]
+    },
+    {
+      "id": "IO620",
+      "number": "20",
+      "name": "IO6",
+      "area": {
+        "x": 739,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPICLK"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTCK"
+        }
+      ]
+    },
+    {
+      "id": "IO721",
+      "number": "21",
+      "name": "IO7",
+      "area": {
+        "x": 803,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPID"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTDO"
+        }
+      ]
+    },
+    {
+      "id": "IO822",
+      "number": "22",
+      "name": "IO8",
+      "area": {
+        "x": 867,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        }
+      ],
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "strap"
+        ],
+        "reason": "Strapping pin (GPIO8)."
+      }
+    },
+    {
+      "id": "IO923",
+      "number": "23",
+      "name": "IO9",
+      "area": {
+        "x": 931,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        }
+      ],
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "strap"
+        ],
+        "reason": "Strapping pin (GPIO9)."
+      }
+    },
+    {
+      "id": "IO1826",
+      "number": "26",
+      "name": "IO18",
+      "area": {
+        "x": 1070,
+        "y": 1131,
+        "w": 62,
+        "h": 31
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "USB",
+          "role": "D-"
+        }
+      ]
+    },
+    {
+      "id": "IO1927",
+      "number": "27",
+      "name": "IO19",
+      "area": {
+        "x": 1070,
+        "y": 1067,
+        "w": 62,
+        "h": 31
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "USB",
+          "role": "D+"
+        }
+      ]
+    },
+    {
+      "id": "RXD030",
+      "number": "30",
+      "name": "RXD0",
+      "area": {
+        "x": 1070,
+        "y": 873,
+        "w": 62,
+        "h": 31
+      },
+      "functions": [
+        {
+          "kind": "UART",
+          "role": "U0RXD",
+          "notes": "GPIO20 default"
+        },
+        {
+          "kind": "GPIO",
+          "notes": "GPIO20"
+        }
+      ]
+    },
+    {
+      "id": "TXD031",
+      "number": "31",
+      "name": "TXD0",
+      "area": {
+        "x": 1070,
+        "y": 808,
+        "w": 62,
+        "h": 31
+      },
+      "functions": [
+        {
+          "kind": "UART",
+          "role": "U0TXD",
+          "notes": "GPIO21 default"
+        },
+        {
+          "kind": "GPIO",
+          "notes": "GPIO21"
+        }
+      ]
+    }
 
-    { "id": "IO2",    "number": "5",  "name": "IO2",  "position": { "x": 125.0, "y": 832.9 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH2" }, { "kind": "SPI", "role": "FSPIQ" } ],
-      "reserved": { "level": "warn", "tags": ["strap"], "reason": "Strapping pin (GPIO2)." } },
-
-    { "id": "IO3",    "number": "6",  "name": "IO3",  "position": { "x": 125.0, "y": 897.5 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH3" } ] },
-
-    { "id": "NC7",    "number": "7",  "name": "NC",   "position": { "x": 125.0, "y": 962.2 }, "electrical": { "type": "NC" } },
-
-    { "id": "EN",     "number": "8",  "name": "EN",   "position": { "x": 119.0, "y": 1026.9 }, "electrical": { "type": "POWER" },
-      "reserved": { "level": "warn", "tags": ["boot"], "reason": "Chip enable; keep HIGH for normal operation. Do not float." } },
-
-    { "id": "NC9",    "number": "9",  "name": "NC",   "position": { "x": 125.0, "y": 1091.6 }, "electrical": { "type": "NC" } },
-    { "id": "NC10",   "number": "10", "name": "NC",   "position": { "x": 119.7, "y": 1156.3 }, "electrical": { "type": "NC" } },
-
-    { "id": "GND11",  "number": "11", "name": "GND",  "position": { "x": 119.7, "y": 1221.0 }, "electrical": { "type": "GROUND" } },
-
-    { "id": "IO0",    "number": "12", "name": "IO0",  "position": { "x": 243.2, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH0" }, { "kind": "CLK", "role": "XTAL_32K_P" } ] },
-
-    { "id": "IO1",    "number": "13", "name": "IO1",  "position": { "x": 307.7, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH1" }, { "kind": "CLK", "role": "XTAL_32K_N" } ] },
-
-    { "id": "GND14",  "number": "14", "name": "GND",  "position": { "x": 372.5, "y": 1316.0 }, "electrical": { "type": "GROUND" } },
-
-    { "id": "NC15",   "number": "15", "name": "NC",   "position": { "x": 437.1, "y": 1316.1 }, "electrical": { "type": "NC" } },
-
-    { "id": "IO10",   "number": "16", "name": "IO10", "position": { "x": 501.8, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "SPI", "role": "FSPICS0" } ] },
-
-    { "id": "NC17",   "number": "17", "name": "NC",   "position": { "x": 566.7, "y": 1316.0 }, "electrical": { "type": "NC" } },
-
-    { "id": "IO4",    "number": "18", "name": "IO4",  "position": { "x": 631.2, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC1_CH4" }, { "kind": "SPI", "role": "FSPIHD" }, { "kind": "JTAG", "role": "MTMS" } ] },
-
-    { "id": "IO5",    "number": "19", "name": "IO5",  "position": { "x": 695.9, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "ADC", "role": "ADC2_CH0" }, { "kind": "SPI", "role": "FSPIWP" }, { "kind": "JTAG", "role": "MTDI" } ] },
-
-    { "id": "IO6",    "number": "20", "name": "IO6",  "position": { "x": 760.5, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "SPI", "role": "FSPICLK" }, { "kind": "JTAG", "role": "MTCK" } ] },
-
-    { "id": "IO7",    "number": "21", "name": "IO7",  "position": { "x": 825.4, "y": 1314.6 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "SPI", "role": "FSPID" }, { "kind": "JTAG", "role": "MTDO" } ] },
-
-    { "id": "IO8",    "number": "22", "name": "IO8",  "position": { "x": 890.1, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" } ],
-      "reserved": { "level": "warn", "tags": ["strap"], "reason": "Strapping pin (GPIO8)." } },
-
-    { "id": "IO9",    "number": "23", "name": "IO9",  "position": { "x": 954.7, "y": 1316.0 },
-      "functions": [ { "kind": "GPIO" } ],
-      "reserved": { "level": "warn", "tags": ["strap"], "reason": "Strapping pin (GPIO9). Default weak pull-up." } },
-
-    { "id": "NC24",   "number": "24", "name": "NC",   "position": { "x": 1019.5, "y": 1316.0 }, "electrical": { "type": "NC" } },
-    { "id": "NC25",   "number": "25", "name": "NC",   "position": { "x": 1073.9, "y": 1221.0 }, "electrical": { "type": "NC" } },
-
-    { "id": "IO18",   "number": "26", "name": "IO18", "position": { "x": 1073.9, "y": 1157.4 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "USB", "role": "D-" } ] },
-
-    { "id": "IO19",   "number": "27", "name": "IO19", "position": { "x": 1073.9, "y": 1091.6 },
-      "functions": [ { "kind": "GPIO" }, { "kind": "USB", "role": "D+" } ] },
-
-    { "id": "NC28",   "number": "28", "name": "NC",   "position": { "x": 1073.9, "y": 1026.9 }, "electrical": { "type": "NC" } },
-    { "id": "NC29",   "number": "29", "name": "NC",   "position": { "x": 1073.9, "y": 962.2 },  "electrical": { "type": "NC" } },
-
-    { "id": "RXD0",   "number": "30", "name": "RXD0","position": { "x": 1073.9, "y": 896.0 },
-      "functions": [ { "kind": "UART", "role": "U0RXD", "notes": "Default pad is GPIO20" }, { "kind": "GPIO", "notes": "GPIO20" } ] },
-
-    { "id": "TXD0",   "number": "31", "name": "TXD0","position": { "x": 1073.9, "y": 832.9 },
-      "functions": [ { "kind": "UART", "role": "U0TXD", "notes": "Default pad is GPIO21" }, { "kind": "GPIO", "notes": "GPIO21" } ] },
-
-    { "id": "NC32",   "number": "32", "name": "NC",   "position": { "x": 1073.9, "y": 768.1 }, "electrical": { "type": "NC" } },
-    { "id": "NC33",   "number": "33", "name": "NC",   "position": { "x": 1073.9, "y": 703.5 }, "electrical": { "type": "NC" } },
-    { "id": "NC34",   "number": "34", "name": "NC",   "position": { "x": 1073.9, "y": 638.8 }, "electrical": { "type": "NC" } },
-    { "id": "NC35",   "number": "35", "name": "NC",   "position": { "x": 1073.9, "y": 574.1 }, "electrical": { "type": "NC" } },
-
-    { "id": "GND36",  "number": "36", "name": "GND",  "position": { "x": 1019.3, "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND37",  "number": "37", "name": "GND",  "position": { "x": 954.6,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND38",  "number": "38", "name": "GND",  "position": { "x": 889.9,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND39",  "number": "39", "name": "GND",  "position": { "x": 825.3,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND40",  "number": "40", "name": "GND",  "position": { "x": 760.5,  "y": 523.5 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND41",  "number": "41", "name": "GND",  "position": { "x": 696.0,  "y": 522.2 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND42",  "number": "42", "name": "GND",  "position": { "x": 631.3,  "y": 523.5 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND43",  "number": "43", "name": "GND",  "position": { "x": 566.5,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND44",  "number": "44", "name": "GND",  "position": { "x": 501.9,  "y": 523.5 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND45",  "number": "45", "name": "GND",  "position": { "x": 437.1,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND46",  "number": "46", "name": "GND",  "position": { "x": 372.4,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND47",  "number": "47", "name": "GND",  "position": { "x": 307.8,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND48",  "number": "48", "name": "GND",  "position": { "x": 243.0,  "y": 523.6 }, "electrical": { "type": "GROUND" } },
-
-    { "id": "EPAD49", "number": "49", "name": "GND (EPAD)", "position": { "x": 596.2, "y": 885.6 }, "electrical": { "type": "GROUND" }, "notes": "Exposed pad; follow datasheet soldering guidance." },
-
-    { "id": "GND50",  "number": "50", "name": "GND",  "position": { "x": 1077.6, "y": 489.7 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND51",  "number": "51", "name": "GND",  "position": { "x": 1078.9, "y": 1286.2 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND52",  "number": "52", "name": "GND",  "position": { "x": 115.4,  "y": 1286.2 }, "electrical": { "type": "GROUND" } },
-    { "id": "GND53",  "number": "53", "name": "GND",  "position": { "x": 115.3,  "y": 485.6 },  "electrical": { "type": "GROUND" } }
   ]
 }

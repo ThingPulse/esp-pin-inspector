@@ -57,6 +57,35 @@ export class ChipPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  get editorEnabled(): boolean {
+    return typeof window !== 'undefined' && window.location.hash.includes('editor');
+  }
+
+  onPinUpdate(update: { pinId: string; area: { x: number; y: number; w: number; h: number } }): void {
+    if (!this.chip) return;
+    const pin = this.chip.pins.find(p => p.id === update.pinId);
+    if (pin) {
+      pin.area = { ...update.area };
+      // Log updated pin JSON for easy copy-paste
+      // eslint-disable-next-line no-console
+      console.log(`Updated pin ${update.pinId}:`, JSON.stringify(pin, null, 2));
+    }
+  }
+
+  downloadChipJson(): void {
+    if (!this.chip) return;
+    const json = JSON.stringify(this.chip, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'chip.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }

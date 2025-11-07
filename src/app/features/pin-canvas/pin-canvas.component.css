@@ -47,3 +47,44 @@
   fill: rgba(255, 176, 32, 0.75);
 }
 
+.pin-canvas rect.pin.editing {
+  fill: rgba(55, 161, 255, 0.85);
+  stroke: #37a1ff;
+  stroke-width: 3;
+  cursor: move;
+}
+
+.pin-canvas .resize-handle {
+  fill: #37a1ff;
+  stroke: #0b0f14;
+  stroke-width: 2;
+  pointer-events: all;
+  cursor: nwse-resize;
+}
+
+.pin-canvas .resize-handle.resize-n,
+.pin-canvas .resize-handle.resize-s {
+  cursor: ns-resize;
+}
+
+.pin-canvas .resize-handle.resize-w,
+.pin-canvas .resize-handle.resize-e {
+  cursor: ew-resize;
+}
+
+.pin-canvas .resize-handle.resize-nw {
+  cursor: nwse-resize;
+}
+
+.pin-canvas .resize-handle.resize-ne {
+  cursor: nesw-resize;
+}
+
+.pin-canvas .resize-handle.resize-sw {
+  cursor: nesw-resize;
+}
+
+.pin-canvas .resize-handle.resize-se {
+  cursor: nwse-resize;
+}
+

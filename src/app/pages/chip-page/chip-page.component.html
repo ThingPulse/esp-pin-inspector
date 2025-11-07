@@ -6,12 +6,15 @@
   </app-chip-picker>
   <app-function-filter></app-function-filter>
   <app-search-box></app-search-box>
+  <button *ngIf="editorEnabled && chip" class="download-btn" (click)="downloadChipJson()" title="Download updated chip.json">
+    💾 Download chip.json
+  </button>
 </div>
 
 <div *ngIf="chip as c; else pick">
   <div class="layout">
     <div class="canvas">
-      <app-pin-canvas [chip]="c" [selectedPinId]="selectedPin?.id || null" (pinClick)="onPinClick($event)"></app-pin-canvas>
+      <app-pin-canvas [chip]="c" [selectedPinId]="selectedPin?.id || null" (pinClick)="onPinClick($event)" (pinUpdate)="onPinUpdate($event)"></app-pin-canvas>
     </div>
     <div class="details">
       <app-pin-details [pin]="selectedPin"></app-pin-details>

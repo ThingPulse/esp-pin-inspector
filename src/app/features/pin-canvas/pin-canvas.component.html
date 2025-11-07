@@ -18,14 +18,84 @@
           <rect
             class="pin"
             [class.selected]="p.id === selectedPinId"
+            [class.editing]="editorEnabled && editingPin?.id === p.id"
             [attr.x]="hit.x"
             [attr.y]="hit.y"
             [attr.width]="hit.width"
             [attr.height]="hit.height"
             rx="4"
             ry="4"
-            (click)="pinClick.emit(p)"
+            (click)="!editorEnabled && pinClick.emit(p)"
+            (mousedown)="onPinMouseDown($event, p)"
           ></rect>
+          <ng-container *ngIf="editorEnabled">
+            <!-- Corner handles -->
+            <rect
+              class="resize-handle resize-nw"
+              [attr.x]="hit.x - 4"
+              [attr.y]="hit.y - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-nw')"
+            ></rect>
+            <rect
+              class="resize-handle resize-ne"
+              [attr.x]="hit.x + hit.width - 4"
+              [attr.y]="hit.y - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-ne')"
+            ></rect>
+            <rect
+              class="resize-handle resize-sw"
+              [attr.x]="hit.x - 4"
+              [attr.y]="hit.y + hit.height - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-sw')"
+            ></rect>
+            <rect
+              class="resize-handle resize-se"
+              [attr.x]="hit.x + hit.width - 4"
+              [attr.y]="hit.y + hit.height - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-se')"
+            ></rect>
+            <!-- Edge handles -->
+            <rect
+              class="resize-handle resize-n"
+              [attr.x]="hit.x + hit.width / 2 - 4"
+              [attr.y]="hit.y - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-n')"
+            ></rect>
+            <rect
+              class="resize-handle resize-s"
+              [attr.x]="hit.x + hit.width / 2 - 4"
+              [attr.y]="hit.y + hit.height - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-s')"
+            ></rect>
+            <rect
+              class="resize-handle resize-w"
+              [attr.x]="hit.x - 4"
+              [attr.y]="hit.y + hit.height / 2 - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-w')"
+            ></rect>
+            <rect
+              class="resize-handle resize-e"
+              [attr.x]="hit.x + hit.width - 4"
+              [attr.y]="hit.y + hit.height / 2 - 4"
+              width="8"
+              height="8"
+              (mousedown)="onResizeHandleMouseDown($event, p, 'resize-e')"
+            ></rect>
+          </ng-container>
         </ng-container>
       </ng-container>
     </svg>

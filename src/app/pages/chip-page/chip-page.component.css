@@ -5,6 +5,26 @@
   margin-bottom: 16px;
 }
 
+.download-btn {
+  margin-left: auto;
+  padding: 8px 16px;
+  background: #37a1ff;
+  color: #0b0f14;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.download-btn:hover {
+  background: #2d8ce6;
+}
+
+.download-btn:active {
+  background: #1f7acc;
+}
+
 .layout {
   display: grid;
   grid-template-columns: 1fr 320px;

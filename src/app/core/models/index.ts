@@ -21,11 +21,11 @@ export interface PinPosition {
   y: number;
 }
 
-export interface PinHitArea {
+export interface PinArea {
   x: number;
   y: number;
-  width: number;
-  height: number;
+  w: number;
+  h: number;
 }
 
 export interface PinDefinition {
@@ -35,7 +35,7 @@ export interface PinDefinition {
   position: PinPosition;
   functions: PinFunction[];
   reserved?: ReservedInfo;
-  hitArea?: PinHitArea;
+  area?: PinArea;
 }
 
 export interface ChipDefinition {
