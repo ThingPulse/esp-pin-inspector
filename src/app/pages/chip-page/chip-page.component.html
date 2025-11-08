@@ -11,6 +11,19 @@
   </button>
 </div>
 
+<div *ngIf="chip as c" class="chip-info">
+  <div class="chip-info-item">
+    <strong>Package:</strong> {{ c.package }}
+  </div>
+  <div class="chip-info-item" *ngIf="c.datasheetUrl">
+    <strong>Datasheet:</strong>
+    <a [href]="c.datasheetUrl" target="_blank" rel="noopener noreferrer" class="datasheet-link">
+      View Datasheet
+      <span class="external-icon">↗</span>
+    </a>
+  </div>
+</div>
+
 <div *ngIf="chip as c; else pick">
   <div class="layout">
     <div class="canvas">
