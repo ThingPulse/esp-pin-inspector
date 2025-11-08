@@ -9,7 +9,7 @@ services:
     
     # For production, use the image from GitHub Container Registry:
     # Replace <OWNER> with your GitHub username or organization
-    image: ghcr.io/${GITHUB_OWNER:-your-username}/esp-pin-inspector:latest
+    image: ghcr.io/thingpulse/esp-pin-inspector:latest
     container_name: esp-pin-inspector
     ports:
       - "80:80"
