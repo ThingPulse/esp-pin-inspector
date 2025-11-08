@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "validate:json": "node tools/validate-json.mjs",
-    "build:index": "node tools/build-index.mjs"
+    "build:index": "node tools/build-index.mjs",
+    "extract:pins": "node tools/extract-pin-areas.mjs"
   },
   "dependencies": {
     "@angular/animations": "^18.2.0",
