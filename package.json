@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "validate:json": "node tools/validate-json.mjs",
     "build:index": "node tools/build-index.mjs",
-    "extract:pins": "node tools/extract-pin-areas.mjs"
+    "extract:pins": "node tools/extract-pin-areas.mjs",
+    "extract:pdf-vectors": "node tools/extract-pdf-vectors.mjs"
   },
   "dependencies": {
     "@angular/animations": "^18.2.0",
@@ -30,6 +31,9 @@
     "@angular-devkit/build-angular": "^18.2.0",
     "@angular/cli": "^18.2.0",
     "@angular/compiler-cli": "^18.2.0",
+    "canvas": "^3.2.0",
+    "pdf.js": "github:mozilla/pdf.js",
+    "pdfjs-dist": "^5.4.394",
     "puppeteer": "^24.29.1",
     "typescript": "~5.4.0"
   },

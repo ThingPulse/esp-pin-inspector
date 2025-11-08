@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.mjs" type="module"></script>
+  <style>
+    body { margin: 0; padding: 20px; }
+    #pdf-container { margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div id="pdf-container"></div>
+  <script type="module">
+    import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.mjs';
+    
+    const loadingTask = pdfjsLib.getDocument('file:///Users/deichhor/Documents/git/esp-pin-inspector/src/assets/chips/esp32-c6-mini-1/esp32-c6-mini-1_mini-1u_datasheet_en.pdf');
+    loadingTask.promise.then(async (pdf) => {
+      const pageNum = 10;
+      const pdfPage = await pdf.getPage(pageNum - 1);
+      const viewport = pdfPage.getViewport({ scale: 2.0 });
+      
+      // Use SVG renderer
+      const { SVGGraphics } = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.mjs');
+      
+      const opList = await pdfPage.getOperatorList();
+      const svgGfx = new SVGGraphics(pdfPage.commonObjs, pdfPage.objs);
+      svgGfx.embedFonts = true;
+      
+      const svg = await svgGfx.getSVG(opList, viewport);
+      svg.setAttribute('viewBox', `0 0 ${viewport.width} ${viewport.height}`);
+      svg.setAttribute('width', viewport.width);
+      svg.setAttribute('height', viewport.height);
+      
+      document.getElementById('pdf-container').appendChild(svg);
+      window.svgReady = true;
+    });
+  </script>
+</body>
+</html>

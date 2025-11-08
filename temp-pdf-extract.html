@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { margin: 0; padding: 20px; background: white; }
+    #pdf-container { margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div id="pdf-container"></div>
+  <script type="module">
+    import * as pdfjsLib from 'file:///Users/deichhor/Documents/git/esp-pin-inspector/node_modules/pdfjs-dist/legacy/build/pdf.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'file:///Users/deichhor/Documents/git/esp-pin-inspector/node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs';
+    
+    const pdfPath = 'file:///Users/deichhor/Documents/git/esp-pin-inspector/src/assets/chips/esp32-c6-mini-1/esp32-c6-mini-1_mini-1u_datasheet_en.pdf';
+    const pageNum = 10;
+    
+    try {
+      const loadingTask = pdfjsLib.getDocument({ url: pdfPath });
+      const pdf = await loadingTask.promise;
+      
+      if (pageNum < 1 || pageNum > pdf.numPages) {
+        throw new Error(`Page number ${pageNum} is out of range (1-${pdf.numPages})`);
+      }
+      
+      const pdfPage = await pdf.getPage(pageNum - 1);
+      const viewport = pdfPage.getViewport({ scale: 1.0 });
+      
+      // Try to use SVGGraphics if available
+      // Note: SVGGraphics might not be available in distributed package
+      // We'll try to render using canvas and convert to SVG
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      
+      await pdfPage.render(renderContext).promise;
+      
+      // Convert canvas to SVG
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      svg.setAttribute('width', viewport.width);
+      svg.setAttribute('height', viewport.height);
+      svg.setAttribute('viewBox', `0 0 ${viewport.width} ${viewport.height}`);
+      
+      // Embed canvas as image in SVG (not true vector, but preserves content)
+      const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+      img.setAttribute('href', canvas.toDataURL('image/png'));
+      img.setAttribute('width', viewport.width);
+      img.setAttribute('height', viewport.height);
+      svg.appendChild(img);
+      
+      document.getElementById('pdf-container').appendChild(svg);
+      window.svgReady = true;
+      window.svgContent = svg.outerHTML;
+    } catch (error) {
+      window.svgError = error.message;
+      window.svgReady = true;
+    }
+  </script>
+</body>
+</html>
