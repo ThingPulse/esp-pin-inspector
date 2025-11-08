@@ -99,7 +99,7 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   hasWarning(pin: PinDefinition): boolean {
-    return pin.reserved?.level === 'warn' || pin.reserved?.level === 'error';
+    return pin.reserved?.level === 'info' || pin.reserved?.level === 'warn' || pin.reserved?.level === 'error';
   }
 
   isGndPin(pin: PinDefinition): boolean {
@@ -120,21 +120,62 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     }
     const query = this.searchFilter.toLowerCase().trim();
     
+    // Helper function to check if a string contains the query
+    const matches = (text: string | null | undefined): boolean => {
+      return text ? text.toLowerCase().includes(query) : false;
+    };
+    
+    // Check pin id
+    if (matches(pin.id)) {
+      return true;
+    }
+    
+    // Check pin number
+    if (matches(pin.number)) {
+      return true;
+    }
+    
     // Check pin name
-    const name = (pin.name || '').toLowerCase();
-    if (name.includes(query)) {
+    if (matches(pin.name)) {
       return true;
     }
     
     // Check functions
     if (pin.functions && pin.functions.length > 0) {
       for (const func of pin.functions) {
-        if (func.kind && func.kind.toLowerCase().includes(query)) {
+        if (matches(func.kind)) {
           return true;
         }
-        if (func.role && func.role.toLowerCase().includes(query)) {
+        if (matches(func.role)) {
           return true;
         }
+        if (matches(func.notes)) {
+          return true;
+        }
+      }
+    }
+    
+    // Check reserved info
+    if (pin.reserved) {
+      if (matches(pin.reserved.reason)) {
+        return true;
+      }
+      if (pin.reserved.tags && pin.reserved.tags.length > 0) {
+        for (const tag of pin.reserved.tags) {
+          if (matches(tag)) {
+            return true;
+          }
+        }
+      }
+    }
+    
+    // Check electrical info
+    if (pin.electrical) {
+      if (matches(pin.electrical.type)) {
+        return true;
+      }
+      if (matches(pin.electrical.voltage)) {
+        return true;
       }
     }
     

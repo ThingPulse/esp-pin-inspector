@@ -6,6 +6,7 @@ export interface ChipViewBox {
 export interface PinFunction {
   kind: string;
   role?: string;
+  notes?: string;
 }
 
 export type ReservedLevel = 'info' | 'warn' | 'error';
@@ -28,6 +29,11 @@ export interface PinArea {
   h: number;
 }
 
+export interface ElectricalInfo {
+  type: string;
+  voltage?: string;
+}
+
 export interface PinDefinition {
   id: string;
   number: string;
@@ -36,6 +42,7 @@ export interface PinDefinition {
   functions: PinFunction[];
   reserved?: ReservedInfo;
   area?: PinArea;
+  electrical?: ElectricalInfo;
 }
 
 export interface ChipDefinition {

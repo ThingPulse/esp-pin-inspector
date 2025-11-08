@@ -3,7 +3,12 @@
   <div>
     <strong>Functions:</strong>
     <ul>
-      <li *ngFor="let f of p.functions">{{ f.kind }}<span *ngIf="f.role"> ({{ f.role }})</span></li>
+      <li *ngFor="let f of p.functions">
+        {{ f.kind }}<span *ngIf="f.role"> ({{ f.role }})</span>
+      </li>
+      <li *ngIf="p.electrical?.type">
+        <em>Electrical: {{ p.electrical.type }}</em>
+      </li>
     </ul>
   </div>
   <div *ngIf="pinWarnings.length">
