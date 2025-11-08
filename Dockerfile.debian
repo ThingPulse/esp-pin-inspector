@@ -1,43 +1,32 @@
+# Alternative Dockerfile using Debian-based Node (easier for native modules)
 # Stage 1: Build the Angular application
-FROM node:18-alpine AS builder
+FROM node:18-slim AS builder
 
 WORKDIR /app
 
 # Install system dependencies for native modules (canvas, puppeteer)
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     python3 \
     make \
     g++ \
-    cairo-dev \
-    jpeg-dev \
-    pango-dev \
-    giflib-dev \
-    pixman-dev \
+    libcairo2-dev \
+    libjpeg-dev \
+    libpango1.0-dev \
+    libgif-dev \
+    librsvg2-dev \
     chromium \
-    nss \
-    freetype \
-    freetype-dev \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    git
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set Puppeteer to use installed Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-
-# Ensure optional dependencies are installed (needed for @rollup/rollup-linux-x64-musl)
-ENV npm_config_optional=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 # Copy package files
 COPY package*.json ./
 
 # Install dependencies
-# Use npm install instead of npm ci to ensure optional deps are installed
-RUN npm install --legacy-peer-deps
-
-# Explicitly install rollup platform package for Alpine (workaround for npm bug)
-RUN npm install @rollup/rollup-linux-x64-musl --save-optional --legacy-peer-deps || true
+RUN npm ci
 
 # Copy source code
 COPY . .
