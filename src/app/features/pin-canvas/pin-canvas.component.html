@@ -20,6 +20,8 @@
             [class.selected]="p.id === selectedPinId"
             [class.editing]="editorEnabled && editingPin?.id === p.id"
             [class.warning]="hasWarning(p)"
+            [class.gnd]="isGndPin(p)"
+            [class.power-3v3]="is3V3Pin(p)"
             [attr.x]="hit.x"
             [attr.y]="hit.y"
             [attr.width]="hit.width"

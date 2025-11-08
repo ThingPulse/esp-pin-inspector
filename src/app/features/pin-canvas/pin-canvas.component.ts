@@ -81,6 +81,18 @@ export class PinCanvasComponent implements OnChanges {
     return pin.reserved?.level === 'warn' || pin.reserved?.level === 'error';
   }
 
+  isGndPin(pin: PinDefinition): boolean {
+    const name = (pin.name || '').toUpperCase();
+    const id = (pin.id || '').toUpperCase();
+    return name.includes('GND') || id.includes('GND') || name === 'GROUND';
+  }
+
+  is3V3Pin(pin: PinDefinition): boolean {
+    const name = (pin.name || '').toUpperCase();
+    const id = (pin.id || '').toUpperCase();
+    return name.includes('3V3') || id.includes('3V3') || name === '3.3V' || id === '3.3V';
+  }
+
   onOverlayClick(event: MouseEvent): void {
     if (!this.debugEnabled || !this.chip || !this.overlayRef) return;
     const svg = this.overlayRef.nativeElement;

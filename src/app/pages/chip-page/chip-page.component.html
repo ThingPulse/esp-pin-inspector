@@ -1,6 +1,6 @@
 <div class="toolbar">
   <app-chip-picker
-    [chips]="[{ id: 'esp32-wroom-32e', name: 'ESP32-WROOM-32E' }, { id: 'esp32-s3-wroom-1', name: 'ESP32-S3-WROOM-1' }, { id: 'esp32-c3-mini-1', name: 'ESP32-C3-MINI-1' }]"
+    [chips]="chips"
     [selectedId]="chip?.chipId || null"
     (select)="sel.setChipId($event); $event && (chip=null); $event && (selectedPin=null); $event && (router.navigate(['/chip', $event]))">
   </app-chip-picker>

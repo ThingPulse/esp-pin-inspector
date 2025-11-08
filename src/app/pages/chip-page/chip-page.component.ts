@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, switchMap, of } from 'rxjs';
-import { ChipDataService } from '../../core/services/chip-data.service';
+import { ChipDataService, ChipIndexEntry } from '../../core/services/chip-data.service';
 import { SelectionService } from '../../core/services/selection.service';
 import { ChipDefinition, PinDefinition } from '../../core/models';
 
@@ -13,6 +13,7 @@ import { ChipDefinition, PinDefinition } from '../../core/models';
 export class ChipPageComponent implements OnInit, OnDestroy {
   chip: ChipDefinition | null = null;
   selectedPin: PinDefinition | null = null;
+  chips: ChipIndexEntry[] = [];
   private sub = new Subscription();
 
   constructor(
@@ -23,6 +24,10 @@ export class ChipPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.sub.add(
+      this.data.loadChipsIndex().subscribe(chips => (this.chips = chips))
+    );
+
     this.sub.add(
       this.route.paramMap
         .pipe(

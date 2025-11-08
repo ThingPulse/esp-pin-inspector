@@ -53,10 +53,19 @@
               "required": ["kind"],
               "properties": {
                 "kind": { "type": "string" },
-                "role": { "type": "string" }
+                "role": { "type": "string" },
+                "notes": { "type": "string" }
               },
               "additionalProperties": false
             }
+          },
+          "electrical": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "voltage": { "type": "string" }
+            },
+            "additionalProperties": false
           },
           "reserved": {
             "type": "object",

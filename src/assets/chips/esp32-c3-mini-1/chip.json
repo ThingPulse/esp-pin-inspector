@@ -10,6 +10,103 @@
   },
   "pins": [
     {
+      "id": "GND1",
+      "number": "1",
+      "name": "GND",
+      "area": {
+        "x": 116,
+        "y": 613,
+        "w": 63,
+        "h": 32
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 177,
+        "y": 340
+      },
+      "functions": []
+    },
+    {
+      "id": "3V3",
+      "number": "2",
+      "name": "3V3",
+      "area": {
+        "x": 116,
+        "y": 679,
+        "w": 63,
+        "h": 32
+      },
+      "electrical": {
+        "type": "POWER",
+        "voltage": "3.3V"
+      },
+      "position": {
+        "x": 192,
+        "y": 470
+      },
+      "functions": []
+    },
+    {
+      "id": "EN3",
+      "number": "3",
+      "name": "EN",
+      "area": {
+        "x": 36,
+        "y": 22,
+        "w": 63,
+        "h": 32
+      },
+      "electrical": {
+        "type": "POWER"
+      },
+      "reserved": {
+        "level": "warn",
+        "tags": [
+          "boot"
+        ],
+        "reason": "Chip enable; keep HIGH for normal operation."
+      },
+      "position": {
+        "x": 147,
+        "y": 599
+      },
+      "functions": []
+    },
+    {
+      "id": "IO44",
+      "number": "4",
+      "name": "IO4",
+      "area": {
+        "x": 133,
+        "y": 22,
+        "w": 63,
+        "h": 32
+      },
+      "functions": [
+        {
+          "kind": "GPIO"
+        },
+        {
+          "kind": "ADC",
+          "role": "ADC1_CH4"
+        },
+        {
+          "kind": "SPI",
+          "role": "FSPIHD"
+        },
+        {
+          "kind": "JTAG",
+          "role": "MTMS"
+        }
+      ],
+      "position": {
+        "x": 147,
+        "y": 656
+      }
+    },
+    {
       "id": "IO25",
       "number": "5",
       "name": "IO2",
@@ -38,6 +135,10 @@
           "strap"
         ],
         "reason": "Strapping pin (GPIO2)."
+      },
+      "position": {
+        "x": 148,
+        "y": 824
       }
     },
     {
@@ -58,7 +159,30 @@
           "kind": "ADC",
           "role": "ADC1_CH3"
         }
-      ]
+      ],
+      "position": {
+        "x": 148,
+        "y": 889
+      }
+    },
+    {
+      "id": "GND7",
+      "number": "7",
+      "name": "GND",
+      "area": {
+        "x": 231,
+        "y": 26,
+        "w": 63,
+        "h": 32
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 147,
+        "y": 954
+      },
+      "functions": []
     },
     {
       "id": "EN8",
@@ -79,7 +203,69 @@
           "boot"
         ],
         "reason": "Chip enable; keep HIGH for normal operation."
-      }
+      },
+      "position": {
+        "x": 147,
+        "y": 1018
+      },
+      "functions": []
+    },
+    {
+      "id": "GND9",
+      "number": "9",
+      "name": "GND",
+      "area": {
+        "x": 114,
+        "y": 549,
+        "w": 63,
+        "h": 32
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 177,
+        "y": 405
+      },
+      "functions": []
+    },
+    {
+      "id": "GND10",
+      "number": "10",
+      "name": "GND",
+      "area": {
+        "x": 116,
+        "y": 1197,
+        "w": 61,
+        "h": 29
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 236,
+        "y": 1196
+      },
+      "functions": []
+    },
+    {
+      "id": "GND11",
+      "number": "11",
+      "name": "GND",
+      "area": {
+        "x": 116,
+        "y": 1132,
+        "w": 62,
+        "h": 32
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 301,
+        "y": 1196
+      },
+      "functions": []
     },
     {
       "id": "IO012",
@@ -103,7 +289,11 @@
           "kind": "CLK",
           "role": "XTAL_32K_P"
         }
-      ]
+      ],
+      "position": {
+        "x": 236,
+        "y": 1285
+      }
     },
     {
       "id": "IO113",
@@ -127,7 +317,49 @@
           "kind": "CLK",
           "role": "XTAL_32K_N"
         }
-      ]
+      ],
+      "position": {
+        "x": 301,
+        "y": 1285
+      }
+    },
+    {
+      "id": "GND14",
+      "number": "14",
+      "name": "GND",
+      "area": {
+        "x": 351,
+        "y": 1253,
+        "w": 29,
+        "h": 63
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 367,
+        "y": 1285
+      },
+      "functions": []
+    },
+    {
+      "id": "GND15",
+      "number": "15",
+      "name": "GND",
+      "area": {
+        "x": 416,
+        "y": 1254,
+        "w": 29,
+        "h": 63
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 430,
+        "y": 1285
+      },
+      "functions": []
     },
     {
       "id": "IO1016",
@@ -147,7 +379,30 @@
           "kind": "SPI",
           "role": "FSPICS0"
         }
-      ]
+      ],
+      "position": {
+        "x": 495,
+        "y": 1286
+      }
+    },
+    {
+      "id": "GND17",
+      "number": "17",
+      "name": "GND",
+      "area": {
+        "x": 544,
+        "y": 1254,
+        "w": 29,
+        "h": 65
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 559,
+        "y": 1286
+      },
+      "functions": []
     },
     {
       "id": "IO418",
@@ -175,7 +430,11 @@
           "kind": "JTAG",
           "role": "MTMS"
         }
-      ]
+      ],
+      "position": {
+        "x": 624,
+        "y": 1286
+      }
     },
     {
       "id": "IO519",
@@ -203,7 +462,11 @@
           "kind": "JTAG",
           "role": "MTDI"
         }
-      ]
+      ],
+      "position": {
+        "x": 689,
+        "y": 1286
+      }
     },
     {
       "id": "IO620",
@@ -227,7 +490,11 @@
           "kind": "JTAG",
           "role": "MTCK"
         }
-      ]
+      ],
+      "position": {
+        "x": 754,
+        "y": 1286
+      }
     },
     {
       "id": "IO721",
@@ -251,7 +518,11 @@
           "kind": "JTAG",
           "role": "MTDO"
         }
-      ]
+      ],
+      "position": {
+        "x": 818,
+        "y": 1286
+      }
     },
     {
       "id": "IO822",
@@ -274,6 +545,10 @@
           "strap"
         ],
         "reason": "Strapping pin (GPIO8)."
+      },
+      "position": {
+        "x": 882,
+        "y": 1286
       }
     },
     {
@@ -297,7 +572,49 @@
           "strap"
         ],
         "reason": "Strapping pin (GPIO9)."
+      },
+      "position": {
+        "x": 946,
+        "y": 1286
       }
+    },
+    {
+      "id": "GND24",
+      "number": "24",
+      "name": "GND",
+      "area": {
+        "x": 998,
+        "y": 1253,
+        "w": 29,
+        "h": 65
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 1010,
+        "y": 1286
+      },
+      "functions": []
+    },
+    {
+      "id": "GND25",
+      "number": "25",
+      "name": "GND",
+      "area": {
+        "x": 1071,
+        "y": 1198,
+        "w": 62,
+        "h": 31
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 1090,
+        "y": 1211
+      },
+      "functions": []
     },
     {
       "id": "IO1826",
@@ -317,7 +634,11 @@
           "kind": "USB",
           "role": "D-"
         }
-      ]
+      ],
+      "position": {
+        "x": 1101,
+        "y": 1147
+      }
     },
     {
       "id": "IO1927",
@@ -337,7 +658,49 @@
           "kind": "USB",
           "role": "D+"
         }
-      ]
+      ],
+      "position": {
+        "x": 1101,
+        "y": 1083
+      }
+    },
+    {
+      "id": "GND28",
+      "number": "28",
+      "name": "GND",
+      "area": {
+        "x": 1070,
+        "y": 1003,
+        "w": 62,
+        "h": 31
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 1101,
+        "y": 1019
+      },
+      "functions": []
+    },
+    {
+      "id": "GND29",
+      "number": "29",
+      "name": "GND",
+      "area": {
+        "x": 1070,
+        "y": 939,
+        "w": 62,
+        "h": 31
+      },
+      "electrical": {
+        "type": "GROUND"
+      },
+      "position": {
+        "x": 1101,
+        "y": 955
+      },
+      "functions": []
     },
     {
       "id": "RXD030",
@@ -359,7 +722,11 @@
           "kind": "GPIO",
           "notes": "GPIO20"
         }
-      ]
+      ],
+      "position": {
+        "x": 1101,
+        "y": 889
+      }
     },
     {
       "id": "TXD031",
@@ -381,8 +748,11 @@
           "kind": "GPIO",
           "notes": "GPIO21"
         }
-      ]
+      ],
+      "position": {
+        "x": 1101,
+        "y": 824
+      }
     }
-
   ]
 }

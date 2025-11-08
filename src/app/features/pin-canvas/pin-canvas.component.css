@@ -78,6 +78,64 @@
   stroke: #ff0000;
 }
 
+.pin-canvas rect.pin.gnd {
+  fill: rgba(139, 69, 19, 0.7);
+  stroke: #8b4513;
+}
+
+.pin-canvas rect.pin.gnd.selected {
+  stroke: #ff0000;
+  stroke-width: 3;
+}
+
+.pin-canvas rect.pin.gnd.warning {
+  fill: rgba(139, 69, 19, 0.7);
+  stroke: #ffb020;
+}
+
+.pin-canvas rect.pin.gnd.warning.selected {
+  stroke: #ff0000;
+  stroke-width: 3;
+}
+
+.pin-canvas rect.pin.power-3v3 {
+  fill: rgba(255, 0, 0, 0.7);
+  stroke: #cc0000;
+}
+
+.pin-canvas rect.pin.power-3v3.selected {
+  stroke: #ff0000;
+  stroke-width: 3;
+}
+
+.pin-canvas rect.pin.power-3v3.warning {
+  fill: rgba(255, 0, 0, 0.7);
+  stroke: #ffb020;
+}
+
+.pin-canvas rect.pin.power-3v3.warning.selected {
+  stroke: #ff0000;
+  stroke-width: 3;
+}
+
+.pin-canvas rect.pin.gnd.editing {
+  fill: rgba(139, 69, 19, 0.85);
+  stroke: #8b4513;
+}
+
+.pin-canvas rect.pin.gnd.editing.selected {
+  stroke: #ff0000;
+}
+
+.pin-canvas rect.pin.power-3v3.editing {
+  fill: rgba(255, 0, 0, 0.85);
+  stroke: #cc0000;
+}
+
+.pin-canvas rect.pin.power-3v3.editing.selected {
+  stroke: #ff0000;
+}
+
 .pin-canvas .resize-handle {
   fill: #37a1ff;
   stroke: #0b0f14;
