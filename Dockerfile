@@ -32,12 +32,13 @@ ENV npm_config_optional=true
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies with progress output
 # Use npm install instead of npm ci to ensure optional deps are installed
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --progress=true --loglevel=warn
 
-# Explicitly install rollup platform package for Alpine (workaround for npm bug)
-RUN npm install @rollup/rollup-linux-x64-musl --save-optional --legacy-peer-deps || true
+# Explicitly install rollup platform packages for Alpine (workaround for npm bug)
+# Install for both amd64 and arm64 architectures
+RUN npm install @rollup/rollup-linux-x64-musl @rollup/rollup-linux-arm64-musl --save-optional --legacy-peer-deps --progress=true || true
 
 # Copy source code
 COPY . .

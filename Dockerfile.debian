@@ -25,8 +25,8 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies with progress output
+RUN npm install --legacy-peer-deps --progress=true --loglevel=warn
 
 # Copy source code
 COPY . .
