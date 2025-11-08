@@ -1093,9 +1093,9 @@
       "functions": []
     },
     {
-      "id": "IO46",
+      "id": "GND46",
       "number": "44",
-      "name": "IO46",
+      "name": "GND",
       "area": {
         "x": 945,
         "y": 912,
@@ -1104,25 +1104,18 @@
       },
       "functions": [
         {
-          "kind": "GPIO"
+          "kind": "GROUND"
         }
       ],
-      "reserved": {
-        "level": "warn",
-        "tags": [
-          "strap"
-        ],
-        "reason": "Boot/ROM print strapping; avoid pulling unintentionally."
-      },
       "position": {
         "x": 972,
         "y": 974
       }
     },
     {
-      "id": "EN45",
+      "id": "GND45",
       "number": "45",
-      "name": "EN",
+      "name": "GND",
       "area": {
         "x": 818,
         "y": 913,
@@ -1130,14 +1123,7 @@
         "h": 123
       },
       "electrical": {
-        "type": "POWER"
-      },
-      "reserved": {
-        "level": "warn",
-        "tags": [
-          "boot"
-        ],
-        "reason": "Keep HIGH; do not float."
+        "type": "GROUND"
       },
       "position": {
         "x": 845,

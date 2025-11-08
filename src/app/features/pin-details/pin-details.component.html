@@ -1,5 +1,8 @@
 <ng-container *ngIf="pin as p; else empty">
   <h2>{{ p.name }}</h2>
+  <div *ngIf="p.id" style="margin-bottom: 0.5em; color: #666; font-size: 0.9em;">
+    <strong>ID:</strong> {{ p.id }}
+  </div>
   <div>
     <strong>Functions:</strong>
     <ul>
