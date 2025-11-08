@@ -114,6 +114,12 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     return name.includes('3V3') || id.includes('3V3') || name === '3.3V' || id === '3.3V';
   }
 
+  isNcPin(pin: PinDefinition): boolean {
+    const name = (pin.name || '').toUpperCase();
+    const id = (pin.id || '').toUpperCase();
+    return name === 'NC' || id.includes('NC') || pin.electrical?.type === 'NC';
+  }
+
   matchesFilter(pin: PinDefinition): boolean {
     if (!this.searchFilter || this.searchFilter.trim() === '') {
       return true;

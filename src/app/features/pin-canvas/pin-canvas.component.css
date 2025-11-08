@@ -136,6 +136,35 @@
   stroke: #ff0000;
 }
 
+.pin-canvas rect.pin.nc {
+  fill: rgba(192, 192, 192, 0.7);
+  stroke: #a0a0a0;
+}
+
+.pin-canvas rect.pin.nc.selected {
+  stroke: #ff0000;
+  stroke-width: 3;
+}
+
+.pin-canvas rect.pin.nc.warning {
+  fill: rgba(192, 192, 192, 0.7);
+  stroke: #ffb020;
+}
+
+.pin-canvas rect.pin.nc.warning.selected {
+  stroke: #ff0000;
+  stroke-width: 3;
+}
+
+.pin-canvas rect.pin.nc.editing {
+  fill: rgba(192, 192, 192, 0.85);
+  stroke: #a0a0a0;
+}
+
+.pin-canvas rect.pin.nc.editing.selected {
+  stroke: #ff0000;
+}
+
 .pin-canvas .resize-handle {
   fill: #37a1ff;
   stroke: #0b0f14;
