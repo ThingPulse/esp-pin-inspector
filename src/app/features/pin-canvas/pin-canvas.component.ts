@@ -4,21 +4,24 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { ChipDefinition, PinDefinition } from '../../core/models';
+import { SelectionService } from '../../core/services/selection.service';
 
 @Component({
   selector: 'app-pin-canvas',
   templateUrl: './pin-canvas.component.html',
   styleUrls: ['./pin-canvas.component.css']
 })
-export class PinCanvasComponent implements OnChanges {
+export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
   @Input() chip!: ChipDefinition;
   @Input() selectedPinId: string | null = null;
   @Output() pinClick = new EventEmitter<PinDefinition>();
@@ -31,6 +34,8 @@ export class PinCanvasComponent implements OnChanges {
   private readonly defaultHitSize = 24;
 
   editingPin: PinDefinition | null = null;
+  searchFilter = '';
+  private sub = new Subscription();
   private dragState: {
     pin: PinDefinition;
     startX: number;
@@ -39,7 +44,23 @@ export class PinCanvasComponent implements OnChanges {
     mode: 'drag' | 'resize-nw' | 'resize-ne' | 'resize-sw' | 'resize-se' | 'resize-n' | 'resize-s' | 'resize-w' | 'resize-e';
   } | null = null;
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
+  constructor(
+    private http: HttpClient,
+    private sanitizer: DomSanitizer,
+    private selection: SelectionService
+  ) {}
+
+  ngOnInit(): void {
+    this.sub.add(
+      this.selection.searchFilter$.subscribe(query => {
+        this.searchFilter = query;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['chip']?.currentValue) {
@@ -91,6 +112,33 @@ export class PinCanvasComponent implements OnChanges {
     const name = (pin.name || '').toUpperCase();
     const id = (pin.id || '').toUpperCase();
     return name.includes('3V3') || id.includes('3V3') || name === '3.3V' || id === '3.3V';
+  }
+
+  matchesFilter(pin: PinDefinition): boolean {
+    if (!this.searchFilter || this.searchFilter.trim() === '') {
+      return true;
+    }
+    const query = this.searchFilter.toLowerCase().trim();
+    
+    // Check pin name
+    const name = (pin.name || '').toLowerCase();
+    if (name.includes(query)) {
+      return true;
+    }
+    
+    // Check functions
+    if (pin.functions && pin.functions.length > 0) {
+      for (const func of pin.functions) {
+        if (func.kind && func.kind.toLowerCase().includes(query)) {
+          return true;
+        }
+        if (func.role && func.role.toLowerCase().includes(query)) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
   }
 
   onOverlayClick(event: MouseEvent): void {

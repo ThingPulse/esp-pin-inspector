@@ -1,6 +1,6 @@
 <input
   type="search"
   [value]="query"
-  (input)="queryChange.emit(($any($event.target)).value)"
+  (input)="onQueryChange(($any($event.target)).value)"
   placeholder="Search pins or functions" />
 
