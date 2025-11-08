@@ -32,15 +32,15 @@
             (mousedown)="onPinMouseDown($event, p)"
           ></rect>
           <ng-container *ngIf="editorEnabled">
-            <!-- Pin name label -->
+            <!-- Pin number and name label -->
             <text
               class="pin-label"
               [attr.x]="hit.x + hit.width / 2"
-              [attr.y]="hit.y + hit.height / 2"
+              [attr.y]="hit.y + hit.height / 2 - 6"
               text-anchor="middle"
               dominant-baseline="middle"
               pointer-events="none"
-            >{{ p.name }}</text>
+            >{{ p.number }}: {{ p.name }}</text>
             <!-- Corner handles -->
             <rect
               class="resize-handle resize-nw"

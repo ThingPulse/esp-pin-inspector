@@ -49,64 +49,6 @@
       "functions": []
     },
     {
-      "id": "EN3",
-      "number": "3",
-      "name": "EN",
-      "area": {
-        "x": 36,
-        "y": 22,
-        "w": 63,
-        "h": 32
-      },
-      "electrical": {
-        "type": "POWER"
-      },
-      "reserved": {
-        "level": "warn",
-        "tags": [
-          "boot"
-        ],
-        "reason": "Chip enable; keep HIGH for normal operation."
-      },
-      "position": {
-        "x": 147,
-        "y": 599
-      },
-      "functions": []
-    },
-    {
-      "id": "IO44",
-      "number": "4",
-      "name": "IO4",
-      "area": {
-        "x": 133,
-        "y": 22,
-        "w": 63,
-        "h": 32
-      },
-      "functions": [
-        {
-          "kind": "GPIO"
-        },
-        {
-          "kind": "ADC",
-          "role": "ADC1_CH4"
-        },
-        {
-          "kind": "SPI",
-          "role": "FSPIHD"
-        },
-        {
-          "kind": "JTAG",
-          "role": "MTMS"
-        }
-      ],
-      "position": {
-        "x": 147,
-        "y": 656
-      }
-    },
-    {
       "id": "IO25",
       "number": "5",
       "name": "IO2",
@@ -164,25 +106,6 @@
         "x": 148,
         "y": 889
       }
-    },
-    {
-      "id": "GND7",
-      "number": "7",
-      "name": "GND",
-      "area": {
-        "x": 231,
-        "y": 26,
-        "w": 63,
-        "h": 32
-      },
-      "electrical": {
-        "type": "GROUND"
-      },
-      "position": {
-        "x": 147,
-        "y": 954
-      },
-      "functions": []
     },
     {
       "id": "EN8",
