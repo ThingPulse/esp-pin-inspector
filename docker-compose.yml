@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  esp-pin-inspector:
+    # For local development, build from Dockerfile:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    
+    # For production, use the image from GitHub Container Registry:
+    # Replace <OWNER> with your GitHub username or organization
+    image: ghcr.io/${GITHUB_OWNER:-your-username}/esp-pin-inspector:latest
+    container_name: esp-pin-inspector
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
