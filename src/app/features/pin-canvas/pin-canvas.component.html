@@ -47,6 +47,35 @@
           (click)="onOverlayClick($event)"
         >
       <rect x="0" y="0" [attr.width]="c.viewBox.width" [attr.height]="c.viewBox.height" fill="transparent"></rect>
+      <!-- Function badges for selected pin -->
+      <ng-container *ngIf="getSelectedPin() as selectedPin">
+        <g class="function-badge">
+          <ng-container *ngFor="let func of selectedPin.functions; let i = index">
+            <g>
+              <rect
+                [attr.x]="getBadgeX(selectedPin, i)"
+                [attr.y]="getBadgeY(selectedPin, i)"
+                [attr.width]="getBadgeWidth(func)"
+                [attr.height]="20"
+                [attr.fill]="getFunctionColor(func.kind)"
+                rx="10"
+                ry="10"
+                opacity="0.9"
+              ></rect>
+              <text
+                [attr.x]="getBadgeX(selectedPin, i) + getBadgeWidth(func) / 2"
+                [attr.y]="getBadgeY(selectedPin, i) + 14"
+                fill="white"
+                font-size="11"
+                font-weight="500"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                pointer-events="none"
+              >{{ func.kind }}<tspan *ngIf="func.role" font-size="9"> ({{ func.role }})</tspan></text>
+            </g>
+          </ng-container>
+        </g>
+      </ng-container>
       <ng-container *ngFor="let p of c.pins">
         <ng-container *ngIf="getHitArea(p) as hit">
           <rect

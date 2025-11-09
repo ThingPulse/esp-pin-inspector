@@ -14,7 +14,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription, take } from 'rxjs';
-import { ChipDefinition, PinDefinition } from '../../core/models';
+import { ChipDefinition, PinDefinition, PinFunction } from '../../core/models';
 import { SelectionService } from '../../core/services/selection.service';
 
 @Component({
@@ -26,6 +26,146 @@ export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnD
   @Input() chip!: ChipDefinition;
   @Input() selectedPinId: string | null = null;
   @Output() pinClick = new EventEmitter<PinDefinition>();
+
+  getSelectedPin(): PinDefinition | null {
+    if (!this.selectedPinId || !this.chip) return null;
+    return this.chip.pins.find(p => p.id === this.selectedPinId) || null;
+  }
+
+  getFunctionColor(kind: string): string {
+    const kindUpper = kind.toUpperCase();
+    // Color mapping for different function types
+    const colorMap: { [key: string]: string } = {
+      'ADC': '#4CAF50',      // Green
+      'RTC': '#2196F3',      // Blue
+      'TOUCH': '#FF9800',    // Orange
+      'GPIO': '#9E9E9E',     // Gray
+      'UART': '#00BCD4',     // Cyan
+      'SPI': '#9C27B0',      // Purple
+      'I2C': '#F44336',      // Red
+      'I2S': '#E91E63',      // Pink
+      'PWM': '#FF5722',      // Deep Orange
+      'DAC': '#8BC34A',      // Light Green
+      'JTAG': '#795548',     // Brown
+      'USB': '#3F51B5',      // Indigo
+      'SDIO': '#009688',     // Teal
+      'CAN': '#FFC107',      // Amber
+    };
+    return colorMap[kindUpper] || '#757575'; // Default gray
+  }
+
+  getBadgePosition(pin: PinDefinition): { x: number; y: number; side: 'right' | 'left' | 'top' | 'bottom' } {
+    if (!this.chip) return { x: 0, y: 0, side: 'right' };
+    
+    const hit = this.getHitArea(pin);
+    const badgeHeight = 20;
+    const badgeSpacing = 24;
+    const numBadges = pin.functions.length;
+    const totalBadgeHeight = numBadges * badgeSpacing;
+    
+    // Try different positions: right, left, top, bottom
+    const positions: Array<{ x: number; y: number; side: 'right' | 'left' | 'top' | 'bottom' }> = [
+      { x: hit.x + hit.width + 8, y: hit.y + hit.height / 2, side: 'right' },
+      { x: hit.x - 8, y: hit.y + hit.height / 2, side: 'left' },
+      { x: hit.x + hit.width / 2, y: hit.y - totalBadgeHeight / 2 - 8, side: 'top' },
+      { x: hit.x + hit.width / 2, y: hit.y + hit.height + totalBadgeHeight / 2 + 8, side: 'bottom' }
+    ];
+    
+    // Find a position that doesn't collide with other pads
+    for (const pos of positions) {
+      if (!this.wouldBadgeCollide(pin, pos, numBadges)) {
+        return pos;
+      }
+    }
+    
+    // If all positions collide, use right side anyway (better than nothing)
+    return positions[0];
+  }
+
+  wouldBadgeCollide(selectedPin: PinDefinition, badgePos: { x: number; y: number; side: 'right' | 'left' | 'top' | 'bottom' }, numBadges: number): boolean {
+    if (!this.chip) return false;
+    
+    const badgeHeight = 20;
+    const badgeSpacing = 24;
+    const maxBadgeWidth = 120; // Approximate max width
+    
+    // Check each badge position
+    for (let i = 0; i < numBadges; i++) {
+      const badgeY = badgePos.y + (i * badgeSpacing) - (numBadges * badgeSpacing / 2);
+      const badgeRect = {
+        x: badgePos.x - (badgePos.side === 'left' ? maxBadgeWidth : 0),
+        y: badgeY - badgeHeight / 2,
+        width: maxBadgeWidth,
+        height: badgeHeight
+      };
+      
+      // Check collision with all other pins
+      for (const otherPin of this.chip.pins) {
+        if (otherPin.id === selectedPin.id) continue; // Skip the selected pin itself
+        
+        const otherHit = this.getHitArea(otherPin);
+        const otherRect = {
+          x: otherHit.x,
+          y: otherHit.y,
+          width: otherHit.width,
+          height: otherHit.height
+        };
+        
+        // Check if rectangles overlap
+        if (this.rectanglesOverlap(badgeRect, otherRect)) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
+  }
+
+  rectanglesOverlap(rect1: { x: number; y: number; width: number; height: number }, 
+                    rect2: { x: number; y: number; width: number; height: number }): boolean {
+    return !(rect1.x + rect1.width < rect2.x ||
+             rect2.x + rect2.width < rect1.x ||
+             rect1.y + rect1.height < rect2.y ||
+             rect2.y + rect2.height < rect1.y);
+  }
+
+  getBadgeX(pin: PinDefinition, index: number): number {
+    const pos = this.getBadgePosition(pin);
+    const func = pin.functions[index];
+    const badgeWidth = this.getBadgeWidth(func);
+    
+    if (pos.side === 'left') {
+      // For left side, badges are right-aligned
+      return pos.x - badgeWidth;
+    } else if (pos.side === 'top' || pos.side === 'bottom') {
+      // For top/bottom, badges are horizontally centered on the pad
+      return pos.x - badgeWidth / 2;
+    } else {
+      // For right side, badges start at pos.x
+      return pos.x;
+    }
+  }
+
+  getBadgeY(pin: PinDefinition, index: number): number {
+    const pos = this.getBadgePosition(pin);
+    const badgeSpacing = 24;
+    const numBadges = pin.functions.length;
+    
+    if (pos.side === 'top' || pos.side === 'bottom') {
+      // For top/bottom, badges are stacked vertically
+      return pos.y + (index * badgeSpacing) - (numBadges * badgeSpacing / 2);
+    } else {
+      // For left/right, badges are vertically centered
+      return pos.y + (index * badgeSpacing) - (numBadges * badgeSpacing / 2);
+    }
+  }
+
+  getBadgeWidth(func: PinFunction): number {
+    // Calculate width based on text content
+    const baseWidth = func.kind.length * 7;
+    const roleWidth = func.role ? (func.role.length + 4) * 5 : 0;
+    return Math.max(50, baseWidth + roleWidth + 16); // Min 50px, add padding
+  }
   @Output() pinUpdate = new EventEmitter<{ pinId: string; area: { x: number; y: number; w: number; h: number } }>();
 
   @ViewChild('overlay', { static: false }) overlayRef?: ElementRef<SVGSVGElement>;
