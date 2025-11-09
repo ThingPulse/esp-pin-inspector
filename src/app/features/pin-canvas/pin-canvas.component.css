@@ -1,4 +1,42 @@
 
+.pin-canvas .canvas-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+
+.pin-canvas .toolbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pin-canvas .toolbar-button:hover {
+  background: #f0f0f0;
+  border-color: #b0b0b0;
+}
+
+.pin-canvas .toolbar-button:active {
+  background: #e0e0e0;
+  transform: scale(0.95);
+}
+
+.pin-canvas .toolbar-button svg {
+  display: block;
+}
+
 .pin-canvas .image-wrap {
   position: relative;
   display: block;

@@ -228,6 +228,25 @@ export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnD
     return '0 0';
   }
 
+  // Zoom in
+  zoomIn(): void {
+    const newZoom = Math.min(this.zoom * 1.2, 32); // Max zoom 32x
+    this.zoom = newZoom;
+  }
+
+  // Zoom out
+  zoomOut(): void {
+    const newZoom = Math.max(this.zoom / 1.2, 0.1); // Min zoom 0.1x
+    this.zoom = newZoom;
+  }
+
+  // Reset zoom and pan to center the chip
+  resetZoom(): void {
+    this.zoom = 1;
+    this.panX = 0;
+    this.panY = 0;
+  }
+
   // Get opacity for main grid (fades out as zoom increases)
   getMainGridOpacity(): number {
     // At zoom 1: full opacity (1.0)
