@@ -220,7 +220,8 @@ export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnD
   }
 
   getTransform(): string {
-    return `translate(${this.panX}px, ${this.panY}px) scale(${this.zoom})`;
+    // Use translate3d instead of translate to force GPU acceleration and prevent rasterization
+    return `translate3d(${this.panX}px, ${this.panY}px, 0) scale(${this.zoom})`;
   }
 
   getTransformOrigin(): string {
@@ -509,13 +510,42 @@ export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnD
       .pipe(take(1))
       .subscribe({
         next: svg => {
-          this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svg);
+          // Inject rendering attributes directly into the SVG to prevent rasterization
+          const modifiedSvg = this.injectSvgRenderingAttributes(svg);
+          this.svgContent = this.sanitizer.bypassSecurityTrustHtml(modifiedSvg);
         },
         error: () => {
           this.svgContent = null;
           console.error(`Failed to load SVG image at ${path}`);
         }
       });
+  }
+
+  private injectSvgRenderingAttributes(svg: string): string {
+    // Add rendering attributes to the root SVG element to prevent rasterization
+    // These attributes ensure the SVG stays crisp at all zoom levels
+    const svgTagRegex = /<svg([^>]*)>/i;
+    const match = svg.match(svgTagRegex);
+    
+    if (match) {
+      const attributes = match[1];
+      // Check if attributes already exist to avoid duplicates
+      let newAttributes = attributes;
+      
+      if (!attributes.includes('shape-rendering')) {
+        newAttributes += ' shape-rendering="geometricPrecision"';
+      }
+      if (!attributes.includes('text-rendering')) {
+        newAttributes += ' text-rendering="geometricPrecision"';
+      }
+      if (!attributes.includes('image-rendering')) {
+        newAttributes += ' image-rendering="optimizeQuality"';
+      }
+      
+      return svg.replace(svgTagRegex, `<svg${newAttributes}>`);
+    }
+    
+    return svg;
   }
 }
 

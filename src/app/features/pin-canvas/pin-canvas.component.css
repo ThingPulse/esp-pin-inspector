@@ -29,7 +29,10 @@
 
 .pin-canvas .transform-wrapper {
   position: relative;
-  will-change: transform;
+  /* Don't use will-change as it can cause pre-rasterization */
+  /* Force GPU acceleration without pre-rasterization */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .pin-canvas .svg-host {
@@ -45,6 +48,11 @@
   width: 100%;
   height: auto;
   min-height: 600px;
+  /* Ensure crisp vector rendering at all zoom levels */
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
+  /* Force vector rendering - don't promote to compositing layer which can cause rasterization */
+  /* Instead, rely on the SVG's own rendering attributes */
 }
 
 .pin-canvas img {
@@ -61,6 +69,8 @@
   width: calc(100% - 32px);
   height: auto;
   pointer-events: all;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
 }
 
 .pin-canvas rect.pin {
