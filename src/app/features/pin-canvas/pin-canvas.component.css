@@ -16,6 +16,11 @@
   user-select: none;
   cursor: grab;
   background: #ffffff;
+  /* Grid background - visible on canvas and behind chip */
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 .pin-canvas .svg-container:active {
@@ -37,7 +42,7 @@
 
 .pin-canvas .svg-host {
   display: block;
-  background: #ffffff;
+  background: transparent;
   border-radius: 12px;
   overflow: visible;
   padding: 16px;
