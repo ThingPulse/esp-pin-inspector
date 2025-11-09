@@ -16,11 +16,6 @@
   user-select: none;
   cursor: grab;
   background: #ffffff;
-  /* Grid background - visible on canvas and behind chip */
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
 }
 
 .pin-canvas .svg-container:active {
@@ -38,6 +33,22 @@
   /* Force GPU acceleration without pre-rasterization */
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+.pin-canvas .grid-background {
+  position: absolute;
+  left: -5000px;
+  top: -5000px;
+  width: 10000px;
+  height: 10000px;
+  pointer-events: none;
+  z-index: 0;
+  /* Grid background - visible on canvas and behind chip */
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0;
 }
 
 .pin-canvas .svg-host {
