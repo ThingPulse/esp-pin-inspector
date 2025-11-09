@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -21,13 +22,14 @@ import { SelectionService } from '../../core/services/selection.service';
   templateUrl: './pin-canvas.component.html',
   styleUrls: ['./pin-canvas.component.css']
 })
-export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
+export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
   @Input() chip!: ChipDefinition;
   @Input() selectedPinId: string | null = null;
   @Output() pinClick = new EventEmitter<PinDefinition>();
   @Output() pinUpdate = new EventEmitter<{ pinId: string; area: { x: number; y: number; w: number; h: number } }>();
 
   @ViewChild('overlay', { static: false }) overlayRef?: ElementRef<SVGSVGElement>;
+  @ViewChild('svgContainer', { static: false }) svgContainerRef?: ElementRef<HTMLDivElement>;
 
   svgContent: SafeHtml | null = null;
   private lastSvgPath: string | null = null;
@@ -44,6 +46,23 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     mode: 'drag' | 'resize-nw' | 'resize-ne' | 'resize-sw' | 'resize-se' | 'resize-n' | 'resize-s' | 'resize-w' | 'resize-e';
   } | null = null;
 
+  // Pan and zoom state
+  panX = 0;
+  panY = 0;
+  zoom = 1;
+  private panState: {
+    isPanning: boolean;
+    startX: number;
+    startY: number;
+    startPanX: number;
+    startPanY: number;
+  } | null = null;
+  private pinchState: {
+    distance: number;
+    centerX: number;
+    centerY: number;
+  } | null = null;
+
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer,
@@ -58,8 +77,20 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     );
   }
 
+  ngAfterViewInit(): void {
+    // Add wheel event listener for zooming after view is initialized
+    setTimeout(() => {
+      if (this.svgContainerRef) {
+        this.svgContainerRef.nativeElement.addEventListener('wheel', this.onWheel, { passive: false });
+      }
+    }, 0);
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    if (this.svgContainerRef) {
+      this.svgContainerRef.nativeElement.removeEventListener('wheel', this.onWheel);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -188,14 +219,161 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     return false;
   }
 
+  getTransform(): string {
+    return `translate(${this.panX}px, ${this.panY}px) scale(${this.zoom})`;
+  }
+
+  getTransformOrigin(): string {
+    return '0 0';
+  }
+
+  onWheel = (event: WheelEvent): void => {
+    if (this.editorEnabled) return; // Don't zoom in editor mode
+    
+    event.preventDefault();
+    event.stopPropagation();
+
+    const delta = event.deltaY;
+    const zoomFactor = delta > 0 ? 0.9 : 1.1;
+    const newZoom = Math.max(0.1, Math.min(100, this.zoom * zoomFactor));
+
+    // Get mouse position relative to the container
+    const container = this.svgContainerRef?.nativeElement;
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    // Calculate zoom point in SVG coordinates (before zoom)
+    const svgX = (mouseX - this.panX) / this.zoom;
+    const svgY = (mouseY - this.panY) / this.zoom;
+
+    // Update zoom
+    this.zoom = newZoom;
+
+    // Adjust pan to keep the point under the mouse fixed
+    this.panX = mouseX - svgX * this.zoom;
+    this.panY = mouseY - svgY * this.zoom;
+  };
+
+  onContainerMouseDown = (event: MouseEvent): void => {
+    if (this.editorEnabled) return; // Don't pan in editor mode
+    if (event.button !== 0) return; // Only left mouse button
+    const target = event.target as HTMLElement;
+    if (target.closest('.pin, .resize-handle, .pin-label')) return; // Don't pan if clicking on pins
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.panState = {
+      isPanning: true,
+      startX: event.clientX,
+      startY: event.clientY,
+      startPanX: this.panX,
+      startPanY: this.panY
+    };
+    document.addEventListener('mousemove', this.onPanMouseMove);
+    document.addEventListener('mouseup', this.onPanMouseUp);
+  };
+
+  onPanMouseMove = (event: MouseEvent): void => {
+    if (!this.panState || !this.panState.isPanning) return;
+    const deltaX = event.clientX - this.panState.startX;
+    const deltaY = event.clientY - this.panState.startY;
+    // Pan values are relative to transform origin, so we can add directly
+    this.panX = this.panState.startPanX + deltaX;
+    this.panY = this.panState.startPanY + deltaY;
+  };
+
+  onPanMouseUp = (): void => {
+    if (this.panState) {
+      this.panState.isPanning = false;
+      this.panState = null;
+    }
+    document.removeEventListener('mousemove', this.onPanMouseMove);
+    document.removeEventListener('mouseup', this.onPanMouseUp);
+  };
+
+  // Touch event handlers for pinch zoom and pan
+  onTouchStart = (event: TouchEvent): void => {
+    if (this.editorEnabled) return;
+    if (event.touches.length === 1) {
+      // Single touch - start panning
+      const touch = event.touches[0];
+      this.panState = {
+        isPanning: true,
+        startX: touch.clientX,
+        startY: touch.clientY,
+        startPanX: this.panX,
+        startPanY: this.panY
+      };
+    } else if (event.touches.length === 2) {
+      // Two touches - start pinch zoom
+      const touch1 = event.touches[0];
+      const touch2 = event.touches[1];
+      const distance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+      const centerX = (touch1.clientX + touch2.clientX) / 2;
+      const centerY = (touch1.clientY + touch2.clientY) / 2;
+      
+      const container = this.svgContainerRef?.nativeElement;
+      if (container) {
+        const rect = container.getBoundingClientRect();
+        this.pinchState = {
+          distance,
+          centerX: centerX - rect.left,
+          centerY: centerY - rect.top
+        };
+      }
+    }
+  };
+
+  onTouchMove = (event: TouchEvent): void => {
+    if (this.editorEnabled) return;
+    event.preventDefault();
+    
+    if (event.touches.length === 1 && this.panState) {
+      // Single touch - continue panning
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - this.panState.startX;
+      const deltaY = touch.clientY - this.panState.startY;
+      this.panX = this.panState.startPanX + deltaX;
+      this.panY = this.panState.startPanY + deltaY;
+    } else if (event.touches.length === 2 && this.pinchState) {
+      // Two touches - pinch zoom
+      const touch1 = event.touches[0];
+      const touch2 = event.touches[1];
+      const newDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+      const zoomFactor = newDistance / this.pinchState.distance;
+      const newZoom = Math.max(0.1, Math.min(100, this.zoom * zoomFactor));
+
+      // Calculate zoom point in SVG coordinates
+      const svgX = (this.pinchState.centerX - this.panX) / this.zoom;
+      const svgY = (this.pinchState.centerY - this.panY) / this.zoom;
+
+      // Update zoom
+      this.zoom = newZoom;
+
+      // Adjust pan to keep the center point fixed
+      this.panX = this.pinchState.centerX - svgX * this.zoom;
+      this.panY = this.pinchState.centerY - svgY * this.zoom;
+
+      // Update distance for next calculation
+      this.pinchState.distance = newDistance;
+    }
+  };
+
+  onTouchEnd = (): void => {
+    this.panState = null;
+    this.pinchState = null;
+  };
+
   onOverlayClick(event: MouseEvent): void {
     if (!this.debugEnabled || !this.chip || !this.overlayRef) return;
     const svg = this.overlayRef.nativeElement;
     const rect = svg.getBoundingClientRect();
-    const scaleX = this.chip.viewBox.width / rect.width;
-    const scaleY = this.chip.viewBox.height / rect.height;
-    const x = Math.round((event.clientX - rect.left) * scaleX);
-    const y = Math.round((event.clientY - rect.top) * scaleY);
+    const scaleX = (this.chip.viewBox.width / rect.width) / this.zoom;
+    const scaleY = (this.chip.viewBox.height / rect.height) / this.zoom;
+    const x = Math.round((event.clientX - rect.left - this.panX) * scaleX);
+    const y = Math.round((event.clientY - rect.top - this.panY) * scaleY);
     const size = this.defaultHitSize;
     const snippet = {
       id: "PIN_PLACEHOLDER",
@@ -216,13 +394,13 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     const svg = this.overlayRef?.nativeElement;
     if (!svg) return;
     const rect = svg.getBoundingClientRect();
-    const scaleX = this.chip.viewBox.width / rect.width;
-    const scaleY = this.chip.viewBox.height / rect.height;
+    const scaleX = (this.chip.viewBox.width / rect.width) / this.zoom;
+    const scaleY = (this.chip.viewBox.height / rect.height) / this.zoom;
     const hitArea = this.getHitArea(pin);
     this.dragState = {
       pin,
-      startX: (event.clientX - rect.left) * scaleX,
-      startY: (event.clientY - rect.top) * scaleY,
+      startX: (event.clientX - rect.left - this.panX) * scaleX,
+      startY: (event.clientY - rect.top - this.panY) * scaleY,
       startHitArea: { ...hitArea },
       mode: 'drag'
     };
@@ -237,13 +415,13 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     const svg = this.overlayRef?.nativeElement;
     if (!svg) return;
     const rect = svg.getBoundingClientRect();
-    const scaleX = this.chip.viewBox.width / rect.width;
-    const scaleY = this.chip.viewBox.height / rect.height;
+    const scaleX = (this.chip.viewBox.width / rect.width) / this.zoom;
+    const scaleY = (this.chip.viewBox.height / rect.height) / this.zoom;
     const hitArea = this.getHitArea(pin);
     this.dragState = {
       pin,
-      startX: (event.clientX - rect.left) * scaleX,
-      startY: (event.clientY - rect.top) * scaleY,
+      startX: (event.clientX - rect.left - this.panX) * scaleX,
+      startY: (event.clientY - rect.top - this.panY) * scaleY,
       startHitArea: { ...hitArea },
       mode: mode as any
     };
@@ -255,10 +433,10 @@ export class PinCanvasComponent implements OnChanges, OnInit, OnDestroy {
     if (!this.dragState || !this.overlayRef) return;
     const svg = this.overlayRef.nativeElement;
     const rect = svg.getBoundingClientRect();
-    const scaleX = this.chip.viewBox.width / rect.width;
-    const scaleY = this.chip.viewBox.height / rect.height;
-    const currentX = (event.clientX - rect.left) * scaleX;
-    const currentY = (event.clientY - rect.top) * scaleY;
+    const scaleX = (this.chip.viewBox.width / rect.width) / this.zoom;
+    const scaleY = (this.chip.viewBox.height / rect.height) / this.zoom;
+    const currentX = (event.clientX - rect.left - this.panX) * scaleX;
+    const currentY = (event.clientY - rect.top - this.panY) * scaleY;
     const deltaX = currentX - this.dragState.startX;
     const deltaY = currentY - this.dragState.startY;
 
