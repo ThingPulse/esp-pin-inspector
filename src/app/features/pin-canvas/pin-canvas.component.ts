@@ -342,7 +342,10 @@ export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnD
       const touch1 = event.touches[0];
       const touch2 = event.touches[1];
       const newDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
-      const zoomFactor = newDistance / this.pinchState.distance;
+      // Apply damping factor to make zoom less aggressive (0.15 = 15% of the distance change)
+      const dampingFactor = 0.15;
+      const rawZoomFactor = newDistance / this.pinchState.distance;
+      const zoomFactor = 1 + (rawZoomFactor - 1) * dampingFactor;
       const newZoom = Math.max(0.1, Math.min(100, this.zoom * zoomFactor));
 
       // Calculate zoom point in SVG coordinates
