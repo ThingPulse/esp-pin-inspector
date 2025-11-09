@@ -1,6 +1,12 @@
 # Stage 1: Build the Angular application
 FROM node:18-alpine AS builder
 
+# Build arguments for cache busting
+ARG BUILD_DATE
+ARG GIT_COMMIT
+ENV BUILD_DATE=$BUILD_DATE
+ENV GIT_COMMIT=$GIT_COMMIT
+
 WORKDIR /app
 
 # Install system dependencies for native modules (canvas, puppeteer)
@@ -43,8 +49,13 @@ RUN npm install @rollup/rollup-linux-x64-musl @rollup/rollup-linux-arm64-musl --
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the application in production mode
+# Using --configuration production ensures proper optimization and cache busting
+RUN npm run build -- --configuration production
+
+# Verify the dist folder was created and contains files
+RUN ls -la dist/esp-pin-inspector/ && \
+    test -f dist/esp-pin-inspector/index.html || (echo "ERROR: Build failed - dist folder missing or incomplete" && exit 1)
 
 # Stage 2: Serve with nginx
 FROM nginx:alpine
