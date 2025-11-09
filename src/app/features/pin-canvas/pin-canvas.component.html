@@ -10,7 +10,8 @@
     >
       <div class="transform-wrapper" [style.transform]="getTransform()" [style.transform-origin]="getTransformOrigin()">
         <!-- Grid background that moves with canvas -->
-        <div class="grid-background"></div>
+        <div class="grid-background grid-main" [style.opacity]="getMainGridOpacity()"></div>
+        <div class="grid-background grid-sub" [style.opacity]="getSubGridOpacity()"></div>
         <ng-container *ngIf="isSvg; else rasterImage">
           <div class="svg-host" [innerHTML]="svgContent"></div>
         </ng-container>

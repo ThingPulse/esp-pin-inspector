@@ -228,6 +228,24 @@ export class PinCanvasComponent implements OnChanges, OnInit, AfterViewInit, OnD
     return '0 0';
   }
 
+  // Get opacity for main grid (fades out as zoom increases)
+  getMainGridOpacity(): number {
+    // At zoom 1: full opacity (1.0)
+    // At zoom 2: half opacity (0.5)
+    // At zoom 4: quarter opacity (0.25)
+    // Fade out smoothly as zoom increases
+    return Math.max(0, 1 / this.zoom);
+  }
+
+  // Get opacity for sub grid (fades in as zoom increases)
+  getSubGridOpacity(): number {
+    // At zoom 1: invisible (0)
+    // At zoom 2: half opacity (0.5)
+    // At zoom 4: full opacity (1.0)
+    // Fade in smoothly as zoom increases
+    return Math.min(1, (this.zoom - 1) / 3);
+  }
+
   onWheel = (event: WheelEvent): void => {
     if (this.editorEnabled) return; // Don't zoom in editor mode
     
